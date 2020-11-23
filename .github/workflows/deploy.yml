@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - name: git config
+      run: |
+        git config user.name github-pages-deploy-action
+        git config user.email github-pages-deploy-action@@users.noreply.github.com
+        git remote set-url origin https://${{github.actor}}:${{github.token}}@github.com/${{github.repository}}.git
+    - run: yarn install
+    - run: yarn build
+    - run: yarn deploy

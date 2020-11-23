@@ -5,7 +5,7 @@
 
 Find the most popular fork on GitHub.
 
-<http://andremiras.github.io/gitpop3/>
+<https://andremiras.github.io/gitpop3/>
 
 This is a rewrite of [GitPop2](https://github.com/AndreMiras/gitpop2) using only frontend tech.
 
