@@ -17,7 +17,7 @@ const searchPopularForks = (url) => {
     query: GET_FORKS_QUERY,
     variables: { owner, name },
   }).then(
-    (result) => result,
+    (result) => (result),
   );
 };
 

@@ -1,8 +1,25 @@
-import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
+import {
+  gql, ApolloClient, createHttpLink, InMemoryCache,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 const endpoint = 'https://api.github.com/graphql';
-const client = new ApolloClient({
+
+const httpLink = createHttpLink({
   uri: endpoint,
+});
+
+const token = '611e97c7dd4ef573efcd31e63e9aed084243d282';
+
+const authLink = setContext((_, { headers }) => ({
+  headers: {
+    ...headers,
+    authorization: token ? `Bearer ${token}` : '',
+  },
+}));
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
