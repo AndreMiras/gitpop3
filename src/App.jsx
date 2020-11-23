@@ -1,13 +1,11 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          GitPop3
-        </p>
-      </header>
+      <Navigation />
     </div>
   );
 }
