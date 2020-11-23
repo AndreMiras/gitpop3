@@ -25,3 +25,5 @@ The app can be deployed on GitHub pages when releasing via:
 ```sh
 yarn deploy
 ```
+Note a [Personal Access Token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) should be generated and set to its base64 form to the `REACT_APP_GITHUB_PAT` environment variable.
+This is required for [Authenticating with GraphQL](https://docs.github.com/en/free-pro-team@latest/graphql/guides/forming-calls-with-graphql#authenticating-with-graphql).

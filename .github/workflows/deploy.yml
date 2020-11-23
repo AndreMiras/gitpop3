@@ -18,4 +18,6 @@ jobs:
         git remote set-url origin https://${{github.actor}}:${{github.token}}@github.com/${{github.repository}}.git
     - run: yarn install
     - run: yarn build
+      env:
+        REACT_APP_GITHUB_PAT: ${{ secrets.REACT_APP_GITHUB_PAT }}
     - run: yarn deploy

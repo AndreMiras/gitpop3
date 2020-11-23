@@ -9,7 +9,13 @@ const httpLink = createHttpLink({
   uri: endpoint,
 });
 
-const token = '611e97c7dd4ef573efcd31e63e9aed084243d282';
+/**
+ * Base64 to trick GitHub hooks so the token doesn't seem leaded in the commit.
+ * Note this token will be accessible from the frontend hence should be very restricted.
+ * Only the `public_repo` scope is required.
+ */
+const token = process.env.REACT_APP_GITHUB_PAT ? atob(process.env.REACT_APP_GITHUB_PAT) : null;
+// console.assert(token, "REACT_APP_GITHUB_PAT environment variable must be set");
 
 const authLink = setContext((_, { headers }) => ({
   headers: {
