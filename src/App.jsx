@@ -1,12 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from './components/Navigation';
+import Container from './components/Container';
 import Footer from './components/Footer';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <div className="App">
       <Navigation />
+      <Container />
       <Footer />
     </div>
   );
