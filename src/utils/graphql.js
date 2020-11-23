@@ -28,7 +28,7 @@ const GET_FORKS_QUERY = gql`
     repository(owner: $owner, name: $name) {
       forks(first: 10) {
         nodes {
-          name
+          nameWithOwner
         }
       }
     }

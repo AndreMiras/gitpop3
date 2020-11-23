@@ -4,15 +4,15 @@ import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PopForm = ({ onSubmit }) => {
-  const [value, setValue] = useState();
+  const [url, setUrl] = useState();
   return (
     <InputGroup className="mb-3">
       <FormControl
         placeholder="https://github.com/django/django"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setUrl(e.target.value)}
       />
       <InputGroup.Append>
-        <Button variant="outline-secondary" onClick={() => onSubmit(value)}>
+        <Button variant="outline-secondary" onClick={() => onSubmit(url)}>
           <FontAwesomeIcon icon="search" />
         </Button>
       </InputGroup.Append>
