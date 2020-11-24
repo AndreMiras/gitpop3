@@ -18,7 +18,11 @@ const Navigation = () => (
             {' '}
             Home
           </Nav.Link>
-          <Nav.Link href="https://github.com/AndreMiras/gitpop3">About</Nav.Link>
+          <Nav.Link href="https://github.com/AndreMiras/gitpop3">
+            <FontAwesomeIcon icon={['fab', 'github-alt']} />
+            {' '}
+            About
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
