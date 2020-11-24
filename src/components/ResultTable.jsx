@@ -3,12 +3,40 @@ import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * https://stackoverflow.com/a/3177838
+ */
+const timeSince = (date) => {
+  const seconds = Math.floor((new Date() - date) / 1000);
+  let interval = seconds / 31536000;
+  if (interval > 1) {
+    return `${Math.floor(interval)} years ago`;
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return `${Math.floor(interval)} months ago`;
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return `${Math.floor(interval)} days ago`;
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return `${Math.floor(interval)} hours ago`;
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return `${Math.floor(interval)} minutes ago`;
+  }
+  return `${Math.floor(seconds)} seconds ago`;
+};
+
 const Fork = ({ info }) => (
   <tr>
     <td>{info.nameWithOwner}</td>
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
-    <td>Modified</td>
+    <td>{timeSince(Date.parse(info.pushedAt))}</td>
   </tr>
 );
 Fork.propTypes = {
@@ -16,6 +44,7 @@ Fork.propTypes = {
     nameWithOwner: PropTypes.string.isRequired,
     stargazerCount: PropTypes.number.isRequired,
     forkCount: PropTypes.number.isRequired,
+    pushedAt: PropTypes.string.isRequired,
   }).isRequired,
 };
 
