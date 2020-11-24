@@ -6,14 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Fork = ({ info }) => (
   <tr>
     <td>{info.nameWithOwner}</td>
-    <td>Stars</td>
-    <td>Forks</td>
+    <td>{info.stargazerCount}</td>
+    <td>{info.forkCount}</td>
     <td>Modified</td>
   </tr>
 );
 Fork.propTypes = {
   info: PropTypes.shape({
     nameWithOwner: PropTypes.string.isRequired,
+    stargazerCount: PropTypes.number.isRequired,
+    forkCount: PropTypes.number.isRequired,
   }).isRequired,
 };
 
@@ -45,7 +47,7 @@ const ResultTable = ({ forks }) => (
         </tr>
       </thead>
       <tbody>
-        { forks.map((fork) => <Fork info={fork} />)}
+        { forks.map((fork) => <Fork key={fork.nameWithOwner} info={fork} />)}
       </tbody>
     </Table>
   </>

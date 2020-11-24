@@ -32,9 +32,12 @@ const client = new ApolloClient({
 const GET_FORKS_QUERY = gql`
   query Forks($owner: String! $name: String!) {
     repository(owner: $owner, name: $name) {
-      forks(first: 10) {
+      forks(first: 100, orderBy: {field: STARGAZERS, direction: DESC}) {
         nodes {
           nameWithOwner
+          stargazerCount
+          forkCount
+          pushedAt
         }
       }
     }
