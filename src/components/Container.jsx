@@ -23,7 +23,7 @@ const searchPopularForks = (url, onResult) => {
 };
 
 const Container = () => {
-  const [forks, setForks] = useState([]);
+  const [forks, setForks] = useState();
   const onResult = (result) => (
     setForks(result.data.repository.forks.nodes)
   );
