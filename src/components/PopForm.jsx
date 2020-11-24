@@ -4,12 +4,17 @@ import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import urlMatch from '../utils/validators';
 
 const PopForm = ({ onSubmit }) => {
   const [url, setUrl] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(url);
+    if (urlMatch(url) === null) {
+      e.stopPropagation();
+    } else {
+      onSubmit(url);
+    }
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -17,9 +22,10 @@ const PopForm = ({ onSubmit }) => {
         <FormControl
           placeholder="https://github.com/django/django"
           onChange={(e) => setUrl(e.target.value)}
+          isInvalid={urlMatch(url) === null}
         />
         <InputGroup.Append>
-          <Button type="submit" variant="outline-secondary" onClick={() => onSubmit(url)}>
+          <Button type="submit" variant="outline-secondary" onClick={handleSubmit}>
             <FontAwesomeIcon icon="search" />
           </Button>
         </InputGroup.Append>

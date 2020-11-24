@@ -3,13 +3,13 @@ import { Container as ReactContainer } from 'react-bootstrap';
 import PopForm from './PopForm';
 import ResultTable from './ResultTable';
 import { client, GET_FORKS_QUERY } from '../utils/graphql';
+import urlMatch from '../utils/validators';
 
-const re = /https:\/\/github.com\/(\w+)\/(\w+)/;
 /**
  * Splits URL to owner and repo name.
  */
 const splitUrl = (url) => (
-  url.match(re).slice(1, 3)
+  urlMatch(url).slice(1, 3)
 );
 
 const searchPopularForks = (url, onResult) => {
