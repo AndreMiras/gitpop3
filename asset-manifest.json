@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/gitpop3/static/css/main.fa84a483.chunk.css",
-    "main.js": "/gitpop3/static/js/main.780246a1.chunk.js",
-    "main.js.map": "/gitpop3/static/js/main.780246a1.chunk.js.map",
+    "main.js": "/gitpop3/static/js/main.6f8522e2.chunk.js",
+    "main.js.map": "/gitpop3/static/js/main.6f8522e2.chunk.js.map",
     "runtime-main.js": "/gitpop3/static/js/runtime-main.4b1e8e30.js",
     "runtime-main.js.map": "/gitpop3/static/js/runtime-main.4b1e8e30.js.map",
     "static/css/2.1a02f21c.chunk.css": "/gitpop3/static/css/2.1a02f21c.chunk.css",
-    "static/js/2.209d2e4e.chunk.js": "/gitpop3/static/js/2.209d2e4e.chunk.js",
-    "static/js/2.209d2e4e.chunk.js.map": "/gitpop3/static/js/2.209d2e4e.chunk.js.map",
+    "static/js/2.4332465e.chunk.js": "/gitpop3/static/js/2.4332465e.chunk.js",
+    "static/js/2.4332465e.chunk.js.map": "/gitpop3/static/js/2.4332465e.chunk.js.map",
     "index.html": "/gitpop3/index.html",
     "static/css/2.1a02f21c.chunk.css.map": "/gitpop3/static/css/2.1a02f21c.chunk.css.map",
     "static/css/main.fa84a483.chunk.css.map": "/gitpop3/static/css/main.fa84a483.chunk.css.map",
-    "static/js/2.209d2e4e.chunk.js.LICENSE.txt": "/gitpop3/static/js/2.209d2e4e.chunk.js.LICENSE.txt"
+    "static/js/2.4332465e.chunk.js.LICENSE.txt": "/gitpop3/static/js/2.4332465e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4b1e8e30.js",
     "static/css/2.1a02f21c.chunk.css",
-    "static/js/2.209d2e4e.chunk.js",
+    "static/js/2.4332465e.chunk.js",
     "static/css/main.fa84a483.chunk.css",
-    "static/js/main.780246a1.chunk.js"
+    "static/js/main.6f8522e2.chunk.js"
   ]
 }
