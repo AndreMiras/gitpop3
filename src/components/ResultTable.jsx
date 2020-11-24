@@ -31,9 +31,18 @@ const timeSince = (date) => {
   return `${Math.floor(seconds)} seconds ago`;
 };
 
+const RepoLink = ({ nameWithOwner }) => (
+  <a href={`https://github.com/${nameWithOwner}`}>
+    {nameWithOwner}
+  </a>
+);
+RepoLink.propTypes = {
+  nameWithOwner: PropTypes.string.isRequired,
+};
+
 const Fork = ({ info }) => (
   <tr>
-    <td>{info.nameWithOwner}</td>
+    <td><RepoLink nameWithOwner={info.nameWithOwner} /></td>
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
     <td>{info.object.history.totalCount}</td>
