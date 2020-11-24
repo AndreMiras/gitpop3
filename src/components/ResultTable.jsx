@@ -36,6 +36,7 @@ const Fork = ({ info }) => (
     <td>{info.nameWithOwner}</td>
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
+    <td>{info.object.history.totalCount}</td>
     <td>{timeSince(Date.parse(info.pushedAt))}</td>
   </tr>
 );
@@ -45,6 +46,11 @@ Fork.propTypes = {
     stargazerCount: PropTypes.number.isRequired,
     forkCount: PropTypes.number.isRequired,
     pushedAt: PropTypes.string.isRequired,
+    object: PropTypes.shape({
+      history: PropTypes.shape({
+        totalCount: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
@@ -67,6 +73,11 @@ const ResultTable = ({ forks }) => (
             <FontAwesomeIcon icon="code-branch" />
             {' '}
             Forks
+          </th>
+          <th>
+            <FontAwesomeIcon icon="dot-circle" />
+            {' '}
+            Commits
           </th>
           <th>
             <FontAwesomeIcon icon="calendar-alt" />

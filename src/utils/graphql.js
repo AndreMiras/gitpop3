@@ -38,6 +38,13 @@ const GET_FORKS_QUERY = gql`
           stargazerCount
           forkCount
           pushedAt
+          object(expression: "master") {
+            ... on Commit {
+              history {
+                totalCount
+              }
+            }
+          }
         }
       }
     }
