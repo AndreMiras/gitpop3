@@ -19,14 +19,29 @@ Fork.propTypes = {
 
 const ResultTable = ({ forks }) => (
   <>
-    <FontAwesomeIcon icon="search" />
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>Repo</th>
-          <th>Stars</th>
-          <th>Forks</th>
-          <th>Modified</th>
+          <th>
+            <FontAwesomeIcon icon={['fab', 'github-alt']} />
+            {' '}
+            Repo
+          </th>
+          <th>
+            <FontAwesomeIcon icon="star" />
+            {' '}
+            Stars
+          </th>
+          <th>
+            <FontAwesomeIcon icon="code-branch" />
+            {' '}
+            Forks
+          </th>
+          <th>
+            <FontAwesomeIcon icon="calendar-alt" />
+            {' '}
+            Modified
+          </th>
         </tr>
       </thead>
       <tbody>
