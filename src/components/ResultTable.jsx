@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Pagination from 'react-js-pagination';
 
 /**
  * https://stackoverflow.com/a/3177838
@@ -63,7 +64,13 @@ Fork.propTypes = {
   }).isRequired,
 };
 
-const ResultTable = ({ forks }) => (
+const paginatedForks = (forks, activePage, itemsCountPerPage) => (
+  forks.slice((activePage - 1) * itemsCountPerPage, activePage * itemsCountPerPage)
+);
+
+const ResultTable = ({
+  forks, activePage, itemsCountPerPage, onPageChange,
+}) => (
   <>
     <Table striped bordered hover>
       <thead>
@@ -96,13 +103,33 @@ const ResultTable = ({ forks }) => (
         </tr>
       </thead>
       <tbody>
-        { forks.map((fork) => <Fork key={fork.nameWithOwner} info={fork} />)}
+        {
+          paginatedForks(
+            forks,
+            activePage,
+            itemsCountPerPage,
+          ).map(
+            (fork) => <Fork key={fork.nameWithOwner} info={fork} />,
+          )
+        }
       </tbody>
     </Table>
+    <Pagination
+      itemClass="page-item"
+      linkClass="page-link"
+      activePage={activePage}
+      itemsCountPerPage={itemsCountPerPage}
+      totalItemsCount={forks.length}
+      pageRangeDisplayed={5}
+      onChange={onPageChange}
+    />
   </>
 );
 ResultTable.propTypes = {
   forks: PropTypes.arrayOf(Fork.propTypes.info).isRequired,
+  activePage: PropTypes.number.isRequired,
+  itemsCountPerPage: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 export default ResultTable;

@@ -24,10 +24,22 @@ const searchPopularForks = (url, onResult) => {
 
 const Container = () => {
   const [forks, setForks] = useState();
+  const [activePage, setActivePage] = useState(1);
   const onResult = (result) => (
     setForks(result.data.repository.forks.nodes)
   );
-  const resultTable = forks ? <ResultTable forks={forks} /> : null;
+  const resultTable = (
+    forks
+      ? (
+        <ResultTable
+          forks={forks}
+          activePage={activePage}
+          itemsCountPerPage={10}
+          onPageChange={setActivePage}
+        />
+      )
+      : null
+  );
   return (
     <ReactContainer>
       <PopForm onSubmit={(url) => searchPopularForks(url, onResult)} />
