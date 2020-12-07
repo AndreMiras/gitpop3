@@ -25,9 +25,15 @@ const searchPopularForks = (url, onResult) => {
 const Container = () => {
   const [forks, setForks] = useState();
   const [activePage, setActivePage] = useState(1);
-  const onResult = (result) => (
-    setForks(result.data.repository.forks.nodes)
-  );
+  const [loading, setLoading] = useState(false);
+  const onResult = (result) => {
+    setForks(result.data.repository.forks.nodes);
+    setLoading(false);
+  };
+  const onSubmit = (url) => {
+    setLoading(true);
+    searchPopularForks(url, onResult);
+  };
   const resultTable = (
     forks
       ? (
@@ -42,7 +48,7 @@ const Container = () => {
   );
   return (
     <ReactContainer>
-      <PopForm onSubmit={(url) => searchPopularForks(url, onResult)} />
+      <PopForm onSubmit={onSubmit} loading={loading} />
       {resultTable}
     </ReactContainer>
   );

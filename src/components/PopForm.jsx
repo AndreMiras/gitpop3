@@ -6,7 +6,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import urlMatch from '../utils/validators';
 
-const PopForm = ({ onSubmit }) => {
+const SearchIcon = ({ loading }) => (
+  <FontAwesomeIcon icon={loading ? 'spinner' : 'search'} spin={loading} />
+);
+SearchIcon.propTypes = {
+  loading: PropTypes.bool.isRequired,
+};
+
+const PopForm = ({ onSubmit, loading }) => {
   const [url, setUrl] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +33,7 @@ const PopForm = ({ onSubmit }) => {
         />
         <InputGroup.Append>
           <Button type="submit" variant="outline-secondary" onClick={handleSubmit}>
-            <FontAwesomeIcon icon="search" />
+            <SearchIcon loading={loading} />
           </Button>
         </InputGroup.Append>
       </InputGroup>
@@ -35,6 +42,7 @@ const PopForm = ({ onSubmit }) => {
 };
 PopForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default PopForm;
