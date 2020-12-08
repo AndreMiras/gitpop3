@@ -12,3 +12,6 @@ jobs:
     - run: yarn install
     - run: yarn test
     - run: yarn lint
+    - uses: coverallsapp/github-action@v1.1.2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
