@@ -3,39 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pagination from 'react-js-pagination';
-import timeSince from '../utils/time';
-
-const RepoLink = ({ nameWithOwner }) => (
-  <a href={`https://github.com/${nameWithOwner}`}>
-    {nameWithOwner}
-  </a>
-);
-RepoLink.propTypes = {
-  nameWithOwner: PropTypes.string.isRequired,
-};
-
-const Fork = ({ info }) => (
-  <tr>
-    <td><RepoLink nameWithOwner={info.nameWithOwner} /></td>
-    <td>{info.stargazerCount}</td>
-    <td>{info.forkCount}</td>
-    <td>{info.object.history.totalCount}</td>
-    <td>{timeSince(Date.parse(info.pushedAt))}</td>
-  </tr>
-);
-Fork.propTypes = {
-  info: PropTypes.shape({
-    nameWithOwner: PropTypes.string.isRequired,
-    stargazerCount: PropTypes.number.isRequired,
-    forkCount: PropTypes.number.isRequired,
-    pushedAt: PropTypes.string.isRequired,
-    object: PropTypes.shape({
-      history: PropTypes.shape({
-        totalCount: PropTypes.number.isRequired,
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
-};
+import ForkLine from './ForkLine';
 
 const paginatedForks = (forks, activePage, itemsCountPerPage) => (
   forks.slice((activePage - 1) * itemsCountPerPage, activePage * itemsCountPerPage)
@@ -82,7 +50,7 @@ const ResultTable = ({
             activePage,
             itemsCountPerPage,
           ).map(
-            (fork) => <Fork key={fork.nameWithOwner} info={fork} />,
+            (fork) => <ForkLine key={fork.nameWithOwner} info={fork} />,
           )
         }
       </tbody>
@@ -99,7 +67,7 @@ const ResultTable = ({
   </>
 );
 ResultTable.propTypes = {
-  forks: PropTypes.arrayOf(Fork.propTypes.info).isRequired,
+  forks: PropTypes.arrayOf(ForkLine.propTypes.info).isRequired,
   activePage: PropTypes.number.isRequired,
   itemsCountPerPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
