@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<tr>
+  <td>
+    <a
+      href="https://github.com/django/django"
+    >
+      django/django
+    </a>
+  </td>
+  <td>
+    123
+  </td>
+  <td>
+    321
+  </td>
+  <td>
+    1234
+  </td>
+  <td>
+    3 months ago
+  </td>
+</tr>
+`;
