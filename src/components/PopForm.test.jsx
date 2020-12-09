@@ -13,3 +13,16 @@ test('renders', () => {
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+describe.each([
+  true,
+  false,
+])("loading='%s'", (loading) => {
+  test('renders', () => {
+    const onSubmit = () => ({});
+    const tree = renderer.create(
+      <PopForm onSubmit={onSubmit} loading={loading} />,
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
