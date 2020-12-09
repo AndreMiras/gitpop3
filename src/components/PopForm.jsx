@@ -4,7 +4,7 @@ import {
   Button, Form, FormControl, InputGroup,
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import urlMatch from '../utils/validators';
+import { urlMatch } from '../utils/validators';
 
 const SearchIcon = ({ loading }) => (
   <FontAwesomeIcon icon={loading ? 'spinner' : 'search'} spin={loading} />
