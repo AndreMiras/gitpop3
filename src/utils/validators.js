@@ -1,7 +1,7 @@
 const repoRegex = /https?:\/\/github.com\/(\w+)\/(\w+)/;
 
 const urlMatch = (url) => (
-  url && url.match(repoRegex)
+  url && url.match(repoRegex) || null
 );
 
 /**

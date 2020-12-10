@@ -48,3 +48,16 @@ test('submit', () => {
   fireEvent.submit(searchInput);
   expect(onSubmit).toHaveBeenNthCalledWith(2, expectedUrl);
 });
+
+/**
+ * Empty form should not trigger the submit callback
+ */
+test('submit empty', () => {
+  const onSubmit = jest.fn();
+  render(<PopForm onSubmit={onSubmit} loading={false} />);
+  const searchInput = screen.getByPlaceholderText(/github.com/);
+  const url = '';
+  fireEvent.change(searchInput, { target: { value: url } });
+  fireEvent.submit(searchInput);
+  expect(onSubmit).not.toHaveBeenCalled();
+});
