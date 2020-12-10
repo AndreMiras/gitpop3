@@ -1,3 +1,4 @@
+import assert from 'assert';
 import {
   gql, ApolloClient, createHttpLink, InMemoryCache,
 } from '@apollo/client';
@@ -15,7 +16,9 @@ const httpLink = createHttpLink({
  * Only the `public_repo` scope is required.
  */
 const token = process.env.REACT_APP_GITHUB_PAT ? atob(process.env.REACT_APP_GITHUB_PAT) : null;
-// console.assert(token, "REACT_APP_GITHUB_PAT environment variable must be set");
+assert( // eslint-disable-line no-console
+  token, 'REACT_APP_GITHUB_PAT environment variable must be set',
+);
 
 const authLink = setContext((_, { headers }) => ({
   headers: {
