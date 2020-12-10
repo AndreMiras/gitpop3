@@ -37,6 +37,16 @@ test('minutes ago', () => {
   ).toBe('15 minutes ago');
 });
 
+test('hours ago', () => {
+  expect(
+    timeSince(
+      moment(
+        Date.now(),
+      ).subtract(6, 'hours').toDate(),
+    ),
+  ).toBe('6 hours ago');
+});
+
 test('days ago', () => {
   expect(
     timeSince(
