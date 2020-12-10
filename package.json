@@ -1,7 +1,7 @@
 {
   "name": "gitpop3",
   "homepage": "https://andremiras.github.io/gitpop3/",
-  "version": "0.1.0",
+  "version": "2020.12.10",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.2.7",
