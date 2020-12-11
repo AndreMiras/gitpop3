@@ -8,7 +8,7 @@ const urlMatch = (url) => (
  * Splits URL to owner and repo name.
  */
 const splitUrl = (url) => (
-  urlMatch(url).slice(1, 3)
+  urlMatch(url) && urlMatch(url).slice(1, 3)
 );
 
 export {

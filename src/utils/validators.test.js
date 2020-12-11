@@ -1,4 +1,4 @@
-import { urlMatch } from './validators';
+import { splitUrl, urlMatch } from './validators';
 
 const validMatch = ['AndreMiras', 'gitpop3'];
 const invalidMatch = null;
@@ -13,9 +13,12 @@ describe.each([
   ['https://github.com/AndreMiras', invalidMatch],
   // empty is invalid
   ['', invalidMatch],
-])("urlMatch('%s')", (url, expected) => {
+  [null, invalidMatch],
+])("urlMatch('%s') and splitUrl('%s')", (url, expected) => {
   test('urlMatch', () => {
-    const actual = urlMatch(url);
-    expect(actual && actual.slice(1)).toEqual(expected);
+    const actualUrlMatch = urlMatch(url);
+    expect(actualUrlMatch && actualUrlMatch.slice(1)).toEqual(expected);
+    const actualSplitUrl = splitUrl(url);
+    expect(actualSplitUrl).toEqual(expected);
   });
 });
