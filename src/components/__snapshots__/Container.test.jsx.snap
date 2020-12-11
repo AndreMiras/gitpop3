@@ -12,7 +12,7 @@ exports[`renders 1`] = `
       className="mb-3 input-group"
     >
       <input
-        className="form-control is-invalid"
+        className="form-control"
         onChange={[Function]}
         placeholder="https://github.com/django/django"
       />

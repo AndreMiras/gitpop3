@@ -23,13 +23,14 @@ const PopForm = ({ onSubmit, loading }) => {
       onSubmit(url);
     }
   };
+  const isInvalid = url && urlMatch(url) === null;
   return (
     <Form onSubmit={handleSubmit}>
       <InputGroup className="mb-3">
         <FormControl
           placeholder="https://github.com/django/django"
           onChange={(e) => setUrl(e.target.value)}
-          isInvalid={urlMatch(url) === null}
+          isInvalid={isInvalid}
         />
         <InputGroup.Append>
           <Button type="submit" variant="outline-secondary" onClick={handleSubmit}>
