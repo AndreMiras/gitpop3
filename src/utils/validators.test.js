@@ -9,6 +9,8 @@ describe.each([
   ['http://github.com/AndreMiras/gitpop3', validMatch],
   // repo and path is OK
   ['https://github.com/AndreMiras/gitpop3/blob/develop/README.md', validMatch],
+  // dashes
+  ['https://github.com/kivy/python-for-android', ['kivy', 'python-for-android']],
   // incomplete is invalid
   ['https://github.com/AndreMiras', invalidMatch],
   // empty is invalid
