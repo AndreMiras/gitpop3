@@ -25,7 +25,7 @@ ErrorDialog.propTypes = {
   onClose: PropTypes.func,
 };
 ErrorDialog.defaultProps = {
-  onClose: () => null,
+  onClose: null,
 };
 
 export default ErrorDialog;
