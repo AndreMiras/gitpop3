@@ -43,8 +43,10 @@ test('renders', () => {
       },
     },
   ];
+  Date.now = jest.fn(() => new Date('2020-12-08T19:18:03.135Z').valueOf());
   const tree = renderer.create(
     <ResultTable forks={forks} activePage={1} itemsCountPerPage={2} onPageChange={() => null} />,
   ).toJSON();
+  Date.now.mockRestore();
   expect(tree).toMatchSnapshot();
 });
