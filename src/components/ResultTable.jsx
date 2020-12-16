@@ -1,12 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { OverlayTrigger, Table, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pagination from 'react-js-pagination';
 import ForkLine from './ForkLine';
 
 const paginatedForks = (forks, activePage, itemsCountPerPage) => (
   forks.slice((activePage - 1) * itemsCountPerPage, activePage * itemsCountPerPage)
+);
+
+const HeaderModified = () => (
+  <OverlayTrigger
+    overlay={(
+      <Tooltip>
+        Last commit on master.
+      </Tooltip>
+    )}
+  >
+    <th>
+      <FontAwesomeIcon icon="calendar-alt" />
+      {' '}
+      Modified
+    </th>
+  </OverlayTrigger>
 );
 
 const ResultTable = ({
@@ -36,11 +52,7 @@ const ResultTable = ({
             {' '}
             Commits
           </th>
-          <th>
-            <FontAwesomeIcon icon="calendar-alt" />
-            {' '}
-            Modified
-          </th>
+          <HeaderModified />
         </tr>
       </thead>
       <tbody>

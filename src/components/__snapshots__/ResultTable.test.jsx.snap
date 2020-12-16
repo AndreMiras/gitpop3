@@ -91,7 +91,12 @@ Array [
            
           Commits
         </th>
-        <th>
+        <th
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
           <svg
             aria-hidden="true"
             className="svg-inline--fa fa-calendar-alt fa-w-14 "
