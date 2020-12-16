@@ -40,9 +40,9 @@ const GET_FORKS_QUERY = gql`
           nameWithOwner
           stargazerCount
           forkCount
-          pushedAt
           object(expression: "master") {
             ... on Commit {
+              committedDate
               history {
                 totalCount
               }

@@ -9,7 +9,7 @@ const ForkLine = ({ info }) => (
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
     <td>{info.object.history.totalCount}</td>
-    <td>{timeSince(Date.parse(info.pushedAt))}</td>
+    <td>{timeSince(Date.parse(info.object.committedDate))}</td>
   </tr>
 );
 ForkLine.propTypes = {
@@ -17,8 +17,8 @@ ForkLine.propTypes = {
     nameWithOwner: PropTypes.string.isRequired,
     stargazerCount: PropTypes.number.isRequired,
     forkCount: PropTypes.number.isRequired,
-    pushedAt: PropTypes.string.isRequired,
     object: PropTypes.shape({
+      committedDate: PropTypes.string.isRequired,
       history: PropTypes.shape({
         totalCount: PropTypes.number.isRequired,
       }).isRequired,
