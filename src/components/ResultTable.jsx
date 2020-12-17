@@ -11,6 +11,7 @@ const paginatedForks = (forks, activePage, itemsCountPerPage) => (
 
 const HeaderModified = () => (
   <OverlayTrigger
+    transition={false}
     overlay={(
       <Tooltip>
         Last commit on master.
