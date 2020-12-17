@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased]
+  - Sortable columns, refs #1
+  - Last commit date bug fix, refs #9
+
 ## [2020.12.14]
   - Prevent submit on empty input
   - Improve repo input validation regex
