@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pagination from 'react-js-pagination';
 import ForkLine from './ForkLine';
+import { sortObjectsFunc } from '../utils/sort';
 
 const paginatedForks = (forks, activePage, itemsCountPerPage) => (
   forks.slice((activePage - 1) * itemsCountPerPage, activePage * itemsCountPerPage)
@@ -58,14 +59,11 @@ HeaderModified.propTypes = {
 const ResultTable = ({
   forks, activePage, itemsCountPerPage, onPageChange,
 }) => {
-  const sortByNameWithOwner = (a, b) => (
-    a.nameWithOwner.toLowerCase().localeCompare(b.nameWithOwner.toLowerCase())
-  );
-  const sortByNumber = (getAttribute) => (a, b) => (getAttribute(a) - getAttribute(b));
-  const sortByStargazerCount = sortByNumber((x) => x.stargazerCount);
-  const sortByForkCount = sortByNumber((x) => x.forkCount);
-  const sortByCommits = sortByNumber((x) => x.object.history.totalCount);
-  const sortByCommittedDate = sortByNumber((x) => Date.parse(x.object.committedDate));
+  const sortByNameWithOwner = sortObjectsFunc((x) => x.nameWithOwner);
+  const sortByStargazerCount = sortObjectsFunc((x) => x.stargazerCount);
+  const sortByForkCount = sortObjectsFunc((x) => x.forkCount);
+  const sortByCommits = sortObjectsFunc((x) => x.object.history.totalCount);
+  const sortByCommittedDate = sortObjectsFunc((x) => Date.parse(x.object.committedDate));
   const [orderBy, setOrderBy] = useState({
     column: 'stargazerCount',
     direction: 'desc',
