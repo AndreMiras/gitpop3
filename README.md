@@ -8,7 +8,10 @@ Find the most popular fork on GitHub.
 
 <https://andremiras.github.io/gitpop3/>
 
-This is a rewrite of [GitPop2](https://github.com/AndreMiras/gitpop2) using only frontend tech.
+GitPop3 helps you choose a fork when a project goes unmaintained.
+It allows you to sort forks by "Stars", "Forks" or "Commits" count.
+![Screenshot](https://i.imgur.com/4Ac311o.png)
+See [GitPop2](https://github.com/AndreMiras/gitpop2) for the same tool using backend tech.
 
 ## Run
 ```sh
