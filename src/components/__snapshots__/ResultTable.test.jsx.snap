@@ -222,27 +222,6 @@ Array [
       <tr>
         <td>
           <a
-            href="https://github.com/django-nonrel/django"
-          >
-            django-nonrel/django
-          </a>
-        </td>
-        <td>
-          214
-        </td>
-        <td>
-          84
-        </td>
-        <td>
-          13990
-        </td>
-        <td>
-          3 months ago
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a
             href="https://github.com/django/django"
           >
             django/django
@@ -259,6 +238,27 @@ Array [
         </td>
         <td>
           1 days ago
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a
+            href="https://github.com/django-nonrel/django"
+          >
+            django-nonrel/django
+          </a>
+        </td>
+        <td>
+          214
+        </td>
+        <td>
+          84
+        </td>
+        <td>
+          13990
+        </td>
+        <td>
+          3 months ago
         </td>
       </tr>
     </tbody>

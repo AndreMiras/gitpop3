@@ -10,8 +10,8 @@ const Container = () => {
   const [errorDetail, setErrorDetail] = useState(null);
   const [activePage, setActivePage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const onResult = (result) => {
-    setForks(result.data.repository.forks.nodes);
+  const onResult = (nodes) => {
+    setForks(nodes);
     setErrorDetail(null);
     setLoading(false);
   };

@@ -4,22 +4,39 @@ import { client } from './graphql';
 
 test('basic case', (done) => {
   const url = 'https://github.com/django/django';
-  const expected = {
-    data: {
-      repository: {
-        forks: {
-          nodes: [],
-        },
+  const forks = {
+    nodes: [],
+  };
+  const origin = {
+    nameWithOwner: 'django/django',
+    stargazerCount: 54393,
+    forkCount: 23386,
+    object: {
+      committedDate: '2020-12-18T08:23:22Z',
+      history: {
+        totalCount: 29060,
       },
     },
   };
+  const repository = {
+    ...origin,
+    forks,
+  };
+  const queryResult = {
+    data: {
+      repository,
+    },
+  };
+  const expected = [
+    ...[origin], ...forks.nodes,
+  ];
   const onResult = (result) => {
     expect(result).toEqual(expected);
     done();
   };
   // test should fail onError
   const onError = (error) => done(error);
-  const querySpy = jest.spyOn(client, 'query').mockReturnValue(Promise.resolve(expected));
+  const querySpy = jest.spyOn(client, 'query').mockReturnValue(Promise.resolve(queryResult));
   searchPopularForks(url, onResult, onError);
   expect(querySpy).toHaveBeenNthCalledWith(
     1, { query: expect.any(Object), variables: { owner: 'django', name: 'django' } },

@@ -58,11 +58,6 @@ HeaderModified.propTypes = {
 const ResultTable = ({
   forks, activePage, itemsCountPerPage, onPageChange,
 }) => {
-  const [sortedForks, setSortedForks] = useState(forks);
-  const [orderBy, setOrderBy] = useState({
-    column: 'stargazerCount',
-    direction: 'desc',
-  });
   const sortByNameWithOwner = (a, b) => (
     a.nameWithOwner.toLowerCase().localeCompare(b.nameWithOwner.toLowerCase())
   );
@@ -71,14 +66,22 @@ const ResultTable = ({
   const sortByForkCount = sortByNumber((x) => x.forkCount);
   const sortByCommits = sortByNumber((x) => x.object.history.totalCount);
   const sortByCommittedDate = sortByNumber((x) => Date.parse(x.object.committedDate));
-  const onHeaderClick = (orderByField, sortFunc) => {
-    // change direction only if the same order was selected
-    const toggledDirection = orderBy.direction === 'asc' ? 'desc' : 'asc';
-    const orderByDirection = orderByField === orderBy.column ? toggledDirection : orderBy.direction;
-    const directionFunc = orderByDirection === 'asc' ? 'slice' : 'reverse';
-    setSortedForks(forks.slice().sort(sortFunc)[directionFunc]());
-    setOrderBy({ column: orderByField, direction: orderByDirection });
+  const [orderBy, setOrderBy] = useState({
+    column: 'stargazerCount',
+    direction: 'desc',
+    sortFunc: sortByStargazerCount,
+  });
+  const sort = (direction, sortFunc) => {
+    const directionFunc = direction === 'asc' ? 'slice' : 'reverse';
+    return forks.slice().sort(sortFunc)[directionFunc]();
   };
+  const onHeaderClick = (column, sortFunc) => {
+    // change direction only if the same order was selected
+    const toggledDirection = orderBy.direction === 'desc' ? 'asc' : 'desc';
+    const direction = column === orderBy.column ? toggledDirection : orderBy.direction;
+    setOrderBy({ column, direction, sortFunc });
+  };
+  const sortedForks = sort(orderBy.direction, orderBy.sortFunc);
   return (
     <>
       <Table striped bordered hover>

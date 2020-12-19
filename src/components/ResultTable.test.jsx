@@ -57,9 +57,9 @@ test('sorting', () => {
   render(
     <ResultTable forks={forks} activePage={1} itemsCountPerPage={1} onPageChange={() => null} />,
   );
-  // not really sorted by default just showing in the same order as received
-  expect(screen.getByText(forks[0].nameWithOwner)).toBeInTheDocument();
-  expect(screen.queryByText(forks[1].nameWithOwner)).not.toBeInTheDocument();
+  // sorted by stargazerCount default
+  expect(screen.getByText(forks[1].nameWithOwner)).toBeInTheDocument();
+  expect(screen.queryByText(forks[0].nameWithOwner)).not.toBeInTheDocument();
   expect(screen.queryByText(forks[2].nameWithOwner)).not.toBeInTheDocument();
   const repoTableHeader = screen.getByText('Repo');
   // let's sort by repo name

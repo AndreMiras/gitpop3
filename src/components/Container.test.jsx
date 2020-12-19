@@ -23,6 +23,17 @@ test('search forks', (done) => {
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole('button', { type: 'submit' });
   const forkId = 'django-nonrel/django';
+  const origin = {
+    nameWithOwner: 'django/django',
+    stargazerCount: 54393,
+    forkCount: 23386,
+    object: {
+      committedDate: '2020-12-18T08:23:22Z',
+      history: {
+        totalCount: 29060,
+      },
+    },
+  };
   const forks = [
     {
       nameWithOwner: forkId,
@@ -36,16 +47,7 @@ test('search forks', (done) => {
       },
     },
   ];
-
-  const searchResult = {
-    data: {
-      repository: {
-        forks: {
-          nodes: forks,
-        },
-      },
-    },
-  };
+  const searchResult = [...[origin], ...forks];
   searchPopularForks.mockImplementationOnce((url, onResult, onError) => {
     onResult(searchResult);
     onError; // peaces linter mind
