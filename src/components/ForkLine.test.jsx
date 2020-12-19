@@ -7,8 +7,8 @@ test('renders', () => {
     nameWithOwner: 'django/django',
     stargazerCount: 123,
     forkCount: 321,
-    pushedAt: '2020-08-29T14:23:26Z',
     object: {
+      committedDate: '2020-08-29T14:23:26Z',
       history: {
         totalCount: 1234,
       },

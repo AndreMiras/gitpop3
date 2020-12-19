@@ -28,8 +28,8 @@ test('search forks', (done) => {
       nameWithOwner: forkId,
       stargazerCount: 214,
       forkCount: 84,
-      pushedAt: '2020-08-29T14:23:26Z',
       object: {
+        committedDate: '2020-08-29T14:23:26Z',
         history: {
           totalCount: 13990,
         },
