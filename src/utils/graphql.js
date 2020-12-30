@@ -11,7 +11,7 @@ const httpLink = createHttpLink({
 });
 
 /**
- * Base64 to trick GitHub hooks so the token doesn't seem leaded in the commit.
+ * Base64 to trick GitHub hooks so the token doesn't seem leaked in the commit.
  * Note this token will be accessible from the frontend hence should be very restricted.
  * Only the `public_repo` scope is required.
  */

@@ -1,6 +1,7 @@
 # Change Log
 
 ## [Unreleased]
+  - Setup Sentry error reporting, refs #10
   - Include origin to node list, refs #11
 
 ## [2020.12.19]
