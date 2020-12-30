@@ -7,7 +7,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import Container from './components/Container';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
+import setupSentry from './utils/sentry';
 
+setupSentry();
 library.add(fab, fas);
 
 function App() {
