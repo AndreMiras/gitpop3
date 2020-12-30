@@ -14,8 +14,10 @@ test('renders', () => {
       },
     },
   };
+  Date.now = jest.fn(() => new Date('2020-12-08T19:18:03.135Z').valueOf());
   const tree = renderer.create(
     <ForkLine info={info} />,
   ).toJSON();
+  Date.now.mockRestore();
   expect(tree).toMatchSnapshot();
 });
