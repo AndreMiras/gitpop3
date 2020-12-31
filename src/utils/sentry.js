@@ -4,7 +4,7 @@ import { version } from '../../package.json';
 
 const setupSentry = () => {
   if (process.env.NODE_ENV !== 'production') {
-    return;
+    return false;
   }
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
@@ -15,6 +15,7 @@ const setupSentry = () => {
     ],
     tracesSampleRate: 1.0,
   });
+  return true;
 };
 
 export default setupSentry;
