@@ -1,4 +1,4 @@
-const repoRegex = /https?:\/\/github.com\/([\w-_]+)\/([\w-_]+)/;
+const repoRegex = /https?:\/\/github.com\/([\w-_.]+)\/([\w-_.]+)/;
 
 const urlMatch = (url) => (
   url && url.match(repoRegex) || null

@@ -3,6 +3,7 @@
 ## [Unreleased]
   - Setup Sentry error reporting, refs #10
   - Include origin to node list, refs #11
+  - Accept dots in repo, refs #12
 
 ## [2020.12.19]
   - Sortable columns, refs #1

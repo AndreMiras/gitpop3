@@ -11,6 +11,8 @@ describe.each([
   ['https://github.com/AndreMiras/gitpop3/blob/develop/README.md', validMatch],
   // dashes
   ['https://github.com/kivy/python-for-android', ['kivy', 'python-for-android']],
+  // dots, refs #12
+  ['https://github.com/aybe/Windows-API-Code-Pack-1.1', ['aybe', 'Windows-API-Code-Pack-1.1']],
   // incomplete is invalid
   ['https://github.com/AndreMiras', invalidMatch],
   // empty is invalid
