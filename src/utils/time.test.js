@@ -72,7 +72,7 @@ test('years ago', () => {
     timeSince(
       moment(
         Date.now(),
-      ).subtract(1, 'years').toDate(),
+      ).subtract(1.1, 'years').toDate(),
     ),
   ).toBe('1 years ago');
 });
