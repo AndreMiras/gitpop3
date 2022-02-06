@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { FormEvent, FunctionComponent, useState } from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { urlMatch } from "../utils/validators";
 
-const SearchIcon = ({ loading }) => (
-  <FontAwesomeIcon icon={loading ? "spinner" : "search"} spin={loading} />
-);
-SearchIcon.propTypes = {
-  loading: PropTypes.bool.isRequired,
+type SearchIconProps = {
+  loading: boolean;
 };
 
-const PopForm = ({ onSubmit, loading }) => {
-  const [url, setUrl] = useState();
-  const handleSubmit = (e) => {
+const SearchIcon: FunctionComponent<SearchIconProps> = ({ loading }) => (
+  <FontAwesomeIcon icon={loading ? "spinner" : "search"} spin={loading} />
+);
+
+type PopFormProps = {
+  onSubmit: (url: string) => void;
+  loading: boolean;
+};
+
+const PopForm: FunctionComponent<PopFormProps> = ({ onSubmit, loading }) => {
+  const [url, setUrl] = useState("");
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (urlMatch(url) === null) {
       e.stopPropagation();
@@ -21,7 +26,7 @@ const PopForm = ({ onSubmit, loading }) => {
       onSubmit(url);
     }
   };
-  const isInvalid = url && urlMatch(url) === null;
+  const isInvalid = url !== "" && urlMatch(url) === null;
   return (
     <Form onSubmit={handleSubmit}>
       <InputGroup className="mb-3">
@@ -42,10 +47,6 @@ const PopForm = ({ onSubmit, loading }) => {
       </InputGroup>
     </Form>
   );
-};
-PopForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default PopForm;

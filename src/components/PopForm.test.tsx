@@ -31,7 +31,7 @@ test("submit", () => {
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const expectedUrl = "https://github.com/django/django";
   fireEvent.change(searchInput, { target: { value: expectedUrl } });
-  const submitButton = screen.getByRole("button", { type: "submit" });
+  const submitButton = screen.getByRole("button");
   // mouse click
   fireEvent.click(submitButton);
   expect(onSubmit).toHaveBeenNthCalledWith(1, expectedUrl);
