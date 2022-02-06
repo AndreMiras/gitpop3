@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { orderBy as lodashOrderBy } from "lodash";
 import { OverlayTrigger, Table, Tooltip } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "react-js-pagination";
 import ForkLine from "./ForkLine";
-import { sortObjectsFunc } from "../utils/sort";
 
 const paginatedForks = (forks, activePage, itemsCountPerPage) =>
   forks.slice(
@@ -56,7 +56,11 @@ const ResultTable = ({
   itemsCountPerPage,
   onPageChange,
 }) => {
-  const sortByNameWithOwner = sortObjectsFunc((x) => x.nameWithOwner);
+  const sortObjectsFunc = (attribute) => (collection, order) =>
+    lodashOrderBy(collection, [attribute], [order]);
+  const sortByNameWithOwner = sortObjectsFunc((x) =>
+    x.nameWithOwner.toLowerCase()
+  );
   const sortByStargazerCount = sortObjectsFunc((x) => x.stargazerCount);
   const sortByForkCount = sortObjectsFunc((x) => x.forkCount);
   const sortByCommits = sortObjectsFunc((x) => x.object.history.totalCount);
@@ -68,10 +72,6 @@ const ResultTable = ({
     direction: "desc",
     sortFunc: sortByStargazerCount,
   });
-  const sort = (direction, sortFunc) => {
-    const directionFunc = direction === "asc" ? "slice" : "reverse";
-    return forks.slice().sort(sortFunc)[directionFunc]();
-  };
   const onHeaderClick = (column, sortFunc) => {
     // change direction only if the same order was selected
     const toggledDirection = orderBy.direction === "desc" ? "asc" : "desc";
@@ -79,7 +79,7 @@ const ResultTable = ({
       column === orderBy.column ? toggledDirection : orderBy.direction;
     setOrderBy({ column, direction, sortFunc });
   };
-  const sortedForks = sort(orderBy.direction, orderBy.sortFunc);
+  const sortedForks = orderBy.sortFunc(forks.slice(), orderBy.direction);
   return (
     <>
       <Table striped bordered hover>
