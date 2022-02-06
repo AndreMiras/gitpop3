@@ -14,7 +14,7 @@ describe('client', () => {
 
   it('production settings', () => {
     expect(setupSentry()).toBe(false);
-    process.env.NODE_ENV = 'production';
+    process.env = { ...OLD_ENV, NODE_ENV: 'production' };
     expect(setupSentry()).toBe(true);
   });
 });

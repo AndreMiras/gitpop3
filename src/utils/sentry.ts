@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 import { version } from '../../package.json';
 
-const setupSentry = () => {
+const setupSentry = (): boolean => {
   if (process.env.NODE_ENV !== 'production') {
     return false;
   }
