@@ -50,6 +50,20 @@ HeaderModified.propTypes = {
   }).isRequired,
 };
 
+const ForkLinePropTypes = {
+  info: PropTypes.shape({
+    nameWithOwner: PropTypes.string.isRequired,
+    stargazerCount: PropTypes.number.isRequired,
+    forkCount: PropTypes.number.isRequired,
+    object: PropTypes.shape({
+      committedDate: PropTypes.string.isRequired,
+      history: PropTypes.shape({
+        totalCount: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
 const ResultTable = ({
   forks,
   activePage,
@@ -137,7 +151,7 @@ const ResultTable = ({
   );
 };
 ResultTable.propTypes = {
-  forks: PropTypes.arrayOf(ForkLine.propTypes.info).isRequired,
+  forks: PropTypes.arrayOf(ForkLinePropTypes.info).isRequired,
   activePage: PropTypes.number.isRequired,
   itemsCountPerPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
