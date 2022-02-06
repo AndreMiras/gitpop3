@@ -1,8 +1,8 @@
 /**
  * https://stackoverflow.com/a/3177838
  */
-const timeSince = (date) => {
-  const seconds = Math.floor((Date.now() - date) / 1000);
+const timeSince = (date: Date) => {
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
   let interval = seconds / 31536000;
   if (interval > 1) {
     return `${Math.floor(interval)} years ago`;

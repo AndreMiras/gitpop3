@@ -4,7 +4,7 @@ import timeSince from './time';
 test('basic case', () => {
   expect(
     timeSince(
-      Date.now(),
+      new Date(Date.now()),
     ),
   );
 });
@@ -12,7 +12,7 @@ test('basic case', () => {
 test('basic case 2', () => {
   expect(
     timeSince(
-      Date.now(),
+      new Date(Date.now()),
     ),
   ).toBe('0 seconds ago');
 });

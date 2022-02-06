@@ -9,7 +9,7 @@ const ForkLine = ({ info }) => (
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
     <td>{info.object.history.totalCount}</td>
-    <td>{timeSince(Date.parse(info.object.committedDate))}</td>
+    <td>{timeSince(new Date(info.object.committedDate))}</td>
   </tr>
 );
 ForkLine.propTypes = {
