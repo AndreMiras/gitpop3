@@ -4,7 +4,7 @@
   "version": "2020.12.19",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.2.7",
+    "@apollo/client": "^3.5.8",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -17,7 +17,7 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.5.3",
     "font-awesome": "^4.7.0",
-    "graphql": "^15.4.0",
+    "graphql": "^16.3.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
