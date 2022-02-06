@@ -1,5 +1,6 @@
-import { ApolloError } from "@apollo/client";
+import { ApolloQueryResult, ApolloError } from "@apollo/client";
 import searchPopularForks from "./search";
+import { Node } from "./types";
 import { client } from "./graphql";
 
 test("basic case", (done) => {
@@ -28,15 +29,15 @@ test("basic case", (done) => {
     },
   };
   const expected = [...[origin], ...forks.nodes];
-  const onResult = (result) => {
+  const onResult = (result: Node[]) => {
     expect(result).toEqual(expected);
     done();
   };
   // test should fail onError
-  const onError = (error) => done(error);
+  const onError = (error: ApolloError) => done(error);
   const querySpy = jest
     .spyOn(client, "query")
-    .mockReturnValue(Promise.resolve(queryResult));
+    .mockReturnValue(Promise.resolve(queryResult as ApolloQueryResult<any>));
   searchPopularForks(url, onResult, onError);
   expect(querySpy).toHaveBeenNthCalledWith(1, {
     query: expect.any(Object),
@@ -50,8 +51,8 @@ test("onError", (done) => {
   const expected =
     "Could not resolve to a Repository with the name 'django/django-404'.";
   // test should fail onResult
-  const onResult = (result) => done(result);
-  const onError = (error) => {
+  const onResult = (result: Node[]) => done(result);
+  const onError = (error: ApolloError) => {
     expect(error).toEqual(new ApolloError({ errorMessage: expected }));
     expect(error.message).toEqual(expected);
     done();
