@@ -1,8 +1,8 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Navigation = () => (
+const Navigation: FunctionComponent = () => (
   <Navbar bg="dark" variant="dark" expand="sm" className="mb-4">
     <Container>
       <Navbar.Brand href={process.env.PUBLIC_URL}>
