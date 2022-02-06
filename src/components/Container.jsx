@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Container as ReactContainer } from 'react-bootstrap';
-import PopForm from './PopForm';
-import ResultTable from './ResultTable';
-import ErrorDialog from './ErrorDialog';
-import searchPopularForks from '../utils/search';
+import React, { useState } from "react";
+import { Container as ReactContainer } from "react-bootstrap";
+import PopForm from "./PopForm";
+import ResultTable from "./ResultTable";
+import ErrorDialog from "./ErrorDialog";
+import searchPopularForks from "../utils/search";
 
 const Container = () => {
   const [forks, setForks] = useState();
@@ -26,18 +26,14 @@ const Container = () => {
     setLoading(true);
     searchPopularForks(url, onResult, onError);
   };
-  const resultTable = (
-    forks
-      ? (
-        <ResultTable
-          forks={forks}
-          activePage={activePage}
-          itemsCountPerPage={10}
-          onPageChange={setActivePage}
-        />
-      )
-      : null
-  );
+  const resultTable = forks ? (
+    <ResultTable
+      forks={forks}
+      activePage={activePage}
+      itemsCountPerPage={10}
+      onPageChange={setActivePage}
+    />
+  ) : null;
   return (
     <ReactContainer>
       {errorDialog}

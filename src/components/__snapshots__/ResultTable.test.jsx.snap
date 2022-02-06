@@ -27,8 +27,7 @@ Array [
               style={Object {}}
             />
           </svg>
-           
-          Repo
+           Repo
            
           <svg
             aria-hidden="true"
@@ -68,8 +67,7 @@ Array [
               style={Object {}}
             />
           </svg>
-           
-          Stars
+           Stars
            
           <svg
             aria-hidden="true"
@@ -109,8 +107,7 @@ Array [
               style={Object {}}
             />
           </svg>
-           
-          Forks
+           Forks
            
           <svg
             aria-hidden="true"
@@ -150,8 +147,7 @@ Array [
               style={Object {}}
             />
           </svg>
-           
-          Commits
+           Commits
            
           <svg
             aria-hidden="true"
@@ -195,8 +191,7 @@ Array [
               style={Object {}}
             />
           </svg>
-           
-          Modified
+           Modified
            
           <svg
             aria-hidden="true"

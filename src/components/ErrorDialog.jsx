@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Modal } from 'react-bootstrap';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Modal } from "react-bootstrap";
 
 const ErrorDialog = ({ detail, onClose }) => {
   const [show, setShow] = useState(true);

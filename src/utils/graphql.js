@@ -1,10 +1,13 @@
-import assert from 'assert';
+import assert from "assert";
 import {
-  gql, ApolloClient, createHttpLink, InMemoryCache,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+  gql,
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
-const endpoint = 'https://api.github.com/graphql';
+const endpoint = "https://api.github.com/graphql";
 
 const httpLink = createHttpLink({
   uri: endpoint,
@@ -15,9 +18,13 @@ const httpLink = createHttpLink({
  * Note this token will be accessible from the frontend hence should be very restricted.
  * Only the `public_repo` scope is required.
  */
-const token = process.env.REACT_APP_GITHUB_PAT ? atob(process.env.REACT_APP_GITHUB_PAT) : null;
-assert( // eslint-disable-line no-console
-  token, 'REACT_APP_GITHUB_PAT environment variable must be set',
+const token = process.env.REACT_APP_GITHUB_PAT
+  ? atob(process.env.REACT_APP_GITHUB_PAT)
+  : null;
+assert(
+  // eslint-disable-line no-console
+  token,
+  "REACT_APP_GITHUB_PAT environment variable must be set"
 );
 
 const authLink = setContext((_, { headers }) => ({
@@ -33,7 +40,7 @@ const client = new ApolloClient({
 });
 
 const GET_FORKS_QUERY = gql`
-  query Forks($owner: String! $name: String!) {
+  query Forks($owner: String!, $name: String!) {
     repository(owner: $owner, name: $name) {
       nameWithOwner
       stargazerCount
@@ -46,7 +53,7 @@ const GET_FORKS_QUERY = gql`
           }
         }
       }
-      forks(first: 100, orderBy: {field: STARGAZERS, direction: DESC}) {
+      forks(first: 100, orderBy: { field: STARGAZERS, direction: DESC }) {
         nodes {
           nameWithOwner
           stargazerCount
@@ -65,7 +72,4 @@ const GET_FORKS_QUERY = gql`
   }
 `;
 
-export {
-  client,
-  GET_FORKS_QUERY,
-};
+export { client, GET_FORKS_QUERY };

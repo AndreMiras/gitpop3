@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import timeSince from '../utils/time';
-import RepoLink from './RepoLink';
+import React from "react";
+import PropTypes from "prop-types";
+import timeSince from "../utils/time";
+import RepoLink from "./RepoLink";
 
 const ForkLine = ({ info }) => (
   <tr>
-    <td><RepoLink nameWithOwner={info.nameWithOwner} /></td>
+    <td>
+      <RepoLink nameWithOwner={info.nameWithOwner} />
+    </td>
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
     <td>{info.object.history.totalCount}</td>

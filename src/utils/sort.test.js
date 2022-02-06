@@ -1,35 +1,35 @@
-import { sortObjects } from './sort';
+import { sortObjects } from "./sort";
 
 const objects = [
   {
     foo: 3,
-    bar: 'c',
+    bar: "c",
   },
   {
     foo: 1,
-    bar: 'b',
+    bar: "b",
   },
   {
     foo: 2,
-    bar: 'a',
+    bar: "a",
   },
 ];
 
-test('number', () => {
+test("number", () => {
   const attribute = (x) => x.foo;
   const sorted = sortObjects(objects, attribute);
   const expected = [
     {
       foo: 1,
-      bar: 'b',
+      bar: "b",
     },
     {
       foo: 2,
-      bar: 'a',
+      bar: "a",
     },
     {
       foo: 3,
-      bar: 'c',
+      bar: "c",
     },
   ];
   expect(sorted).toEqual(expected);
@@ -37,21 +37,21 @@ test('number', () => {
   expect(reverse).toEqual(expected.reverse());
 });
 
-test('string', () => {
+test("string", () => {
   const attribute = (x) => x.bar;
   const sorted = sortObjects(objects, attribute);
   const expected = [
     {
       foo: 2,
-      bar: 'a',
+      bar: "a",
     },
     {
       foo: 1,
-      bar: 'b',
+      bar: "b",
     },
     {
       foo: 3,
-      bar: 'c',
+      bar: "c",
     },
   ];
   expect(sorted).toEqual(expected);

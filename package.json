@@ -31,8 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "lint": "eslint -c .eslintrc 'src/**/*.{js,jsx}'",
-    "format": "eslint -c .eslintrc 'src/**/*.{js,jsx}' --fix",
+    "lint": "npx prettier --check src",
+    "format": "npx prettier --write src",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -67,6 +67,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "gh-pages": "^3.1.0",
     "moment": "^2.29.1",
+    "prettier": "2.5.1",
     "react-test-renderer": "^17.0.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"

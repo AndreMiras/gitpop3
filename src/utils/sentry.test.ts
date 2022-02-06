@@ -1,6 +1,6 @@
-import setupSentry from './sentry';
+import setupSentry from "./sentry";
 
-describe('client', () => {
+describe("client", () => {
   const OLD_ENV = process.env;
 
   beforeEach(() => {
@@ -12,9 +12,9 @@ describe('client', () => {
     process.env = OLD_ENV; // restore old env
   });
 
-  it('production settings', () => {
+  it("production settings", () => {
     expect(setupSentry()).toBe(false);
-    process.env = { ...OLD_ENV, NODE_ENV: 'production' };
+    process.env = { ...OLD_ENV, NODE_ENV: "production" };
     expect(setupSentry()).toBe(true);
   });
 });
