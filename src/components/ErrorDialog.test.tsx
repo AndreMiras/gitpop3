@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode, ReactPortal } from "react";
 import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import { fireEvent, render, screen } from "@testing-library/react";
@@ -9,16 +9,14 @@ describe("ErrorDialog", () => {
    * Workaround for the modal not rendering properly in tests.
    * https://stackoverflow.com/a/58076920/185510
    */
+  const oldCreatePortal = ReactDOM.createPortal;
   beforeAll(() => {
-    // Not too sure why using jest.fn() won't work here
-    // ReactDOM.createPortal = jest.fn(node => node);
-    ReactDOM.createPortal = (node) => node;
-    ReactDOM.createPortalOld = ReactDOM.createPortal;
+    ReactDOM.createPortal = (node: ReactNode): ReactPortal =>
+      node as ReactPortal;
   });
 
-  afterEach(() => {
-    // ReactDOM.createPortal.mockClear();
-    ReactDOM.createPortal = ReactDOM.createPortalOld;
+  afterAll(() => {
+    ReactDOM.createPortal = oldCreatePortal;
   });
 
   test("renders", () => {
@@ -39,7 +37,6 @@ describe("ErrorDialog", () => {
   test("onClose", (done) => {
     render(<ErrorDialog detail="Error details onClose" onClose={done} />);
     const closeButton = screen.getByRole("button", {
-      type: "button",
       hidden: true,
     });
     fireEvent.click(closeButton);

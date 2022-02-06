@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { FunctionComponent, useState } from "react";
 import { Modal } from "react-bootstrap";
 
-const ErrorDialog = ({ detail, onClose }) => {
+type ErrorDialogProps = {
+  detail: string;
+  onClose?: () => void;
+};
+
+const ErrorDialog: FunctionComponent<ErrorDialogProps> = ({
+  detail,
+  onClose,
+}) => {
   const [show, setShow] = useState(true);
   const handleClose = () => {
     setShow(false);
-    onClose();
+    onClose && onClose();
   };
 
   // note animation is disabled to workaround an upstream issue:
@@ -19,13 +26,6 @@ const ErrorDialog = ({ detail, onClose }) => {
       <Modal.Body>{detail}</Modal.Body>
     </Modal>
   );
-};
-ErrorDialog.propTypes = {
-  detail: PropTypes.string.isRequired,
-  onClose: PropTypes.func,
-};
-ErrorDialog.defaultProps = {
-  onClose: null,
 };
 
 export default ErrorDialog;
