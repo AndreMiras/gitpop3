@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Container as ReactContainer } from "react-bootstrap";
 import PopForm from "./PopForm";
 import ResultTable from "./ResultTable";
 import ErrorDialog from "./ErrorDialog";
-import searchPopularForks from "../utils/search";
+import { searchPopularForks } from "../utils/search";
+import { Node } from "../utils/types";
 
-const Container = () => {
-  const [forks, setForks] = useState();
-  const [errorDetail, setErrorDetail] = useState(null);
+const Container: FunctionComponent = () => {
+  const [forks, setForks] = useState<Node[]>();
+  const [errorDetail, setErrorDetail] = useState<Error | null>(null);
   const [activePage, setActivePage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const onResult = (nodes) => {
+  const onResult = (nodes: Node[]) => {
     setForks(nodes);
     setErrorDetail(null);
     setLoading(false);
   };
-  const onError = (error) => {
+  const onError = (error: Error) => {
     setErrorDetail(error);
     setLoading(false);
   };
   const errorDialog = errorDetail ? (
     <ErrorDialog detail={errorDetail.message} />
   ) : null;
-  const onSubmit = (url) => {
+  const onSubmit = (url: string) => {
     setLoading(true);
     searchPopularForks(url, onResult, onError);
   };

@@ -23,4 +23,4 @@ const searchPopularForks = (
     .catch((error) => onError(error));
 };
 
-export default searchPopularForks;
+export { searchPopularForks };

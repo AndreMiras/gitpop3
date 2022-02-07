@@ -1,5 +1,5 @@
 import { ApolloQueryResult, ApolloError } from "@apollo/client";
-import searchPopularForks from "./search";
+import { searchPopularForks } from "./search";
 import { Node } from "./types";
 import { client } from "./graphql";
 
