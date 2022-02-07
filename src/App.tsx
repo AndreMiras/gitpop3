@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -12,14 +12,12 @@ import setupSentry from "./utils/sentry";
 setupSentry();
 library.add(fab, fas);
 
-function App() {
-  return (
-    <div className="App">
-      <Navigation />
-      <Container />
-      <Footer />
-    </div>
-  );
-}
+const App: FunctionComponent = () => (
+  <div className="App">
+    <Navigation />
+    <Container />
+    <Footer />
+  </div>
+);
 
 export default App;
