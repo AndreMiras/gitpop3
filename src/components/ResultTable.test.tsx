@@ -1,4 +1,3 @@
-import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -45,7 +44,9 @@ const forks = [
 ];
 
 test("renders", () => {
-  Date.now = jest.fn(() => new Date("2020-12-08T19:18:03.135Z").valueOf());
+  const spy = jest
+    .spyOn(Date, "now")
+    .mockImplementation(() => new Date("2020-12-08T19:18:03.135Z").valueOf());
   const tree = renderer
     .create(
       <ResultTable
@@ -56,7 +57,7 @@ test("renders", () => {
       />
     )
     .toJSON();
-  Date.now.mockRestore();
+  spy.mockRestore();
   expect(tree).toMatchSnapshot();
 });
 

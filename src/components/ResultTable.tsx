@@ -1,39 +1,62 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { FunctionComponent, useState } from "react";
 import { orderBy as lodashOrderBy } from "lodash";
 import { OverlayTrigger, Table, Tooltip } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "react-js-pagination";
+import { Node } from "../utils/types";
 import ForkLine from "./ForkLine";
 
-const paginatedForks = (forks, activePage, itemsCountPerPage) =>
+type Direction = "desc" | "asc";
+
+type SortFunc = (collection: any, order: Direction) => any;
+
+const paginatedForks = (
+  forks: Node[],
+  activePage: number,
+  itemsCountPerPage: number
+) =>
   forks.slice(
     (activePage - 1) * itemsCountPerPage,
     activePage * itemsCountPerPage
   );
 
-const sortIconDirection = (direction) =>
+const sortIconDirection = (direction: Direction) =>
   direction === "asc" ? "sort-down" : "sort-up";
 
-const SortIcon = ({ column, orderBy }) => (
+type SortIconProps = {
+  column: string;
+  orderBy: {
+    column: string;
+    direction: Direction;
+  };
+};
+
+const SortIcon: FunctionComponent<SortIconProps> = ({ column, orderBy }) => (
   <FontAwesomeIcon
     icon={
       orderBy.column === column ? sortIconDirection(orderBy.direction) : "sort"
     }
   />
 );
-SortIcon.propTypes = {
-  column: PropTypes.string.isRequired,
-  orderBy: PropTypes.shape({
-    column: PropTypes.string.isRequired,
-    direction: PropTypes.string.isRequired,
-  }).isRequired,
+
+type HeaderModifiedProps = {
+  onHeaderClick: (column: string, sortFunc: SortFunc) => void;
+  // TODO
+  sortByCommittedDate: SortFunc;
+  orderBy: {
+    column: string;
+    direction: Direction;
+  };
 };
 
-const HeaderModified = ({ onHeaderClick, sortByCommittedDate, orderBy }) => (
+const HeaderModified: FunctionComponent<HeaderModifiedProps> = ({
+  onHeaderClick,
+  sortByCommittedDate,
+  orderBy,
+}) => (
   <OverlayTrigger
     transition={false}
-    overlay={<Tooltip>Last commit on master.</Tooltip>}
+    overlay={<Tooltip id="last-commit-tooltip">Last commit on master.</Tooltip>}
   >
     <th onClick={() => onHeaderClick("committedDate", sortByCommittedDate)}>
       <FontAwesomeIcon icon="calendar-alt" /> Modified{" "}
@@ -41,37 +64,24 @@ const HeaderModified = ({ onHeaderClick, sortByCommittedDate, orderBy }) => (
     </th>
   </OverlayTrigger>
 );
-HeaderModified.propTypes = {
-  onHeaderClick: PropTypes.func.isRequired,
-  sortByCommittedDate: PropTypes.func.isRequired,
-  orderBy: PropTypes.shape({
-    column: PropTypes.string.isRequired,
-    direction: PropTypes.string.isRequired,
-  }).isRequired,
+
+type ResultTableProps = {
+  forks: Node[];
+  activePage: number;
+  itemsCountPerPage: number;
+  onPageChange: (pageNumber: number) => void;
 };
 
-const ForkLinePropTypes = {
-  info: PropTypes.shape({
-    nameWithOwner: PropTypes.string.isRequired,
-    stargazerCount: PropTypes.number.isRequired,
-    forkCount: PropTypes.number.isRequired,
-    object: PropTypes.shape({
-      committedDate: PropTypes.string.isRequired,
-      history: PropTypes.shape({
-        totalCount: PropTypes.number.isRequired,
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
-};
-
-const ResultTable = ({
+const ResultTable: FunctionComponent<ResultTableProps> = ({
   forks,
   activePage,
   itemsCountPerPage,
   onPageChange,
 }) => {
-  const sortObjectsFunc = (attribute) => (collection, order) =>
-    lodashOrderBy(collection, [attribute], [order]);
+  const sortObjectsFunc =
+    (attribute: (attribute: any) => any) =>
+    (collection: any[], order: Direction) =>
+      lodashOrderBy(collection, [attribute], [order]);
   const sortByNameWithOwner = sortObjectsFunc((x) =>
     x.nameWithOwner.toLowerCase()
   );
@@ -81,12 +91,16 @@ const ResultTable = ({
   const sortByCommittedDate = sortObjectsFunc((x) =>
     Date.parse(x.object.committedDate)
   );
-  const [orderBy, setOrderBy] = useState({
+  const [orderBy, setOrderBy] = useState<{
+    column: string;
+    direction: Direction;
+    sortFunc: SortFunc;
+  }>({
     column: "stargazerCount",
     direction: "desc",
     sortFunc: sortByStargazerCount,
   });
-  const onHeaderClick = (column, sortFunc) => {
+  const onHeaderClick = (column: string, sortFunc: SortFunc) => {
     // change direction only if the same order was selected
     const toggledDirection = orderBy.direction === "desc" ? "asc" : "desc";
     const direction =
@@ -149,12 +163,6 @@ const ResultTable = ({
       />
     </>
   );
-};
-ResultTable.propTypes = {
-  forks: PropTypes.arrayOf(ForkLinePropTypes.info).isRequired,
-  activePage: PropTypes.number.isRequired,
-  itemsCountPerPage: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
 };
 
 export default ResultTable;
