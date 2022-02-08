@@ -2,24 +2,12 @@ import { ApolloQueryResult, ApolloError } from "@apollo/client";
 import { searchPopularForks } from "./search";
 import { Node } from "./types";
 import { client } from "./graphql";
+import { origin } from "./fixtures";
 
 test("basic case", (done) => {
   const url = "https://github.com/django/django";
   const forks = {
     nodes: [],
-  };
-  const origin = {
-    nameWithOwner: "django/django",
-    stargazerCount: 54393,
-    forkCount: 23386,
-    defaultBranchRef: {
-      target: {
-        committedDate: "2020-12-18T08:23:22Z",
-        history: {
-          totalCount: 29060,
-        },
-      },
-    },
   };
   const repository = {
     ...origin,
