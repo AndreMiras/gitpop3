@@ -14,8 +14,8 @@ const ForkLine: FunctionComponent<ForkLineProps> = ({ info }) => (
     </td>
     <td>{info.stargazerCount}</td>
     <td>{info.forkCount}</td>
-    <td>{info.object.history.totalCount}</td>
-    <td>{timeSince(new Date(info.object.committedDate))}</td>
+    <td>{info.defaultBranchRef.target.history.totalCount}</td>
+    <td>{timeSince(new Date(info.defaultBranchRef.target.committedDate))}</td>
   </tr>
 );
 

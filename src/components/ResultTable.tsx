@@ -56,7 +56,11 @@ const HeaderModified: FunctionComponent<HeaderModifiedProps> = ({
 }) => (
   <OverlayTrigger
     transition={false}
-    overlay={<Tooltip id="last-commit-tooltip">Last commit on master.</Tooltip>}
+    overlay={
+      <Tooltip id="last-commit-tooltip">
+        Last commit on the default branch.
+      </Tooltip>
+    }
   >
     <th onClick={() => onHeaderClick("committedDate", sortByCommittedDate)}>
       <FontAwesomeIcon icon="calendar-alt" /> Modified{" "}
@@ -87,9 +91,11 @@ const ResultTable: FunctionComponent<ResultTableProps> = ({
   );
   const sortByStargazerCount = sortObjectsFunc((x) => x.stargazerCount);
   const sortByForkCount = sortObjectsFunc((x) => x.forkCount);
-  const sortByCommits = sortObjectsFunc((x) => x.object.history.totalCount);
+  const sortByCommits = sortObjectsFunc(
+    (x) => x.defaultBranchRef.target.history.totalCount
+  );
   const sortByCommittedDate = sortObjectsFunc((x) =>
-    Date.parse(x.object.committedDate)
+    Date.parse(x.defaultBranchRef.target.committedDate)
   );
   const [orderBy, setOrderBy] = useState<{
     column: string;

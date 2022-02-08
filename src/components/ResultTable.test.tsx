@@ -12,10 +12,12 @@ const forks = [
     nameWithOwner: "django-nonrel/django",
     stargazerCount: 214,
     forkCount: 84,
-    object: {
-      committedDate: "2020-08-29T14:23:26Z",
-      history: {
-        totalCount: 13990,
+    defaultBranchRef: {
+      target: {
+        committedDate: "2020-08-29T14:23:26Z",
+        history: {
+          totalCount: 13990,
+        },
       },
     },
   },
@@ -23,10 +25,12 @@ const forks = [
     nameWithOwner: "django/django",
     stargazerCount: 54330,
     forkCount: 23377,
-    object: {
-      committedDate: "2020-12-07:14:12Z",
-      history: {
-        totalCount: 29000,
+    defaultBranchRef: {
+      target: {
+        committedDate: "2020-12-07:14:12Z",
+        history: {
+          totalCount: 29000,
+        },
       },
     },
   },
@@ -34,10 +38,12 @@ const forks = [
     nameWithOwner: "FlipperPA/django-mssql-backend",
     stargazerCount: 18,
     forkCount: 2,
-    object: {
-      committedDate: "2020-01-13:11:12Z",
-      history: {
-        totalCount: 28017,
+    defaultBranchRef: {
+      target: {
+        committedDate: "2020-01-13:11:12Z",
+        history: {
+          totalCount: 28017,
+        },
       },
     },
   },

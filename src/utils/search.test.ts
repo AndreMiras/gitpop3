@@ -12,10 +12,12 @@ test("basic case", (done) => {
     nameWithOwner: "django/django",
     stargazerCount: 54393,
     forkCount: 23386,
-    object: {
-      committedDate: "2020-12-18T08:23:22Z",
-      history: {
-        totalCount: 29060,
+    defaultBranchRef: {
+      target: {
+        committedDate: "2020-12-18T08:23:22Z",
+        history: {
+          totalCount: 29060,
+        },
       },
     },
   };

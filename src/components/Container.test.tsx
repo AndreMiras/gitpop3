@@ -24,10 +24,12 @@ test("search forks", (done) => {
     nameWithOwner: "django/django",
     stargazerCount: 54393,
     forkCount: 23386,
-    object: {
-      committedDate: "2020-12-18T08:23:22Z",
-      history: {
-        totalCount: 29060,
+    defaultBranchRef: {
+      target: {
+        committedDate: "2020-12-18T08:23:22Z",
+        history: {
+          totalCount: 29060,
+        },
       },
     },
   };
@@ -36,10 +38,12 @@ test("search forks", (done) => {
       nameWithOwner: forkId,
       stargazerCount: 214,
       forkCount: 84,
-      object: {
-        committedDate: "2020-08-29T14:23:26Z",
-        history: {
-          totalCount: 13990,
+      defaultBranchRef: {
+        target: {
+          committedDate: "2020-08-29T14:23:26Z",
+          history: {
+            totalCount: 13990,
+          },
         },
       },
     },

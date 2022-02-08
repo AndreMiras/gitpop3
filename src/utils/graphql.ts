@@ -44,11 +44,13 @@ const GET_FORKS_QUERY = gql`
     nameWithOwner
     stargazerCount
     forkCount
-    object(expression: "master") {
-      ... on Commit {
-        committedDate
-        history {
-          totalCount
+    defaultBranchRef {
+      target {
+        ... on Commit {
+          committedDate
+          history {
+            totalCount
+          }
         }
       }
     }

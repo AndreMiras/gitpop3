@@ -2,10 +2,12 @@ type Node = {
   nameWithOwner: string;
   stargazerCount: number;
   forkCount: number;
-  object: {
-    committedDate: string;
-    history: {
-      totalCount: number;
+  defaultBranchRef: {
+    target: {
+      committedDate: string;
+      history: {
+        totalCount: number;
+      };
     };
   };
 };

@@ -7,10 +7,12 @@ test("renders", () => {
     nameWithOwner: "django/django",
     stargazerCount: 123,
     forkCount: 321,
-    object: {
-      committedDate: "2020-08-29T14:23:26Z",
-      history: {
-        totalCount: 1234,
+    defaultBranchRef: {
+      target: {
+        committedDate: "2020-08-29T14:23:26Z",
+        history: {
+          totalCount: 1234,
+        },
       },
     },
   };
