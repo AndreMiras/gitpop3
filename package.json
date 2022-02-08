@@ -17,7 +17,6 @@
     "font-awesome": "^4.7.0",
     "graphql": "^16.3.0",
     "lodash": "^4.17.21",
-    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
