@@ -40,32 +40,26 @@ const client = new ApolloClient({
 });
 
 const GET_FORKS_QUERY = gql`
-  query Forks($owner: String!, $name: String!) {
-    repository(owner: $owner, name: $name) {
-      nameWithOwner
-      stargazerCount
-      forkCount
-      object(expression: "master") {
-        ... on Commit {
-          committedDate
-          history {
-            totalCount
-          }
+  fragment RepositoryFields on Repository {
+    nameWithOwner
+    stargazerCount
+    forkCount
+    object(expression: "master") {
+      ... on Commit {
+        committedDate
+        history {
+          totalCount
         }
       }
+    }
+  }
+
+  query forks($owner: String!, $name: String!) {
+    repository(owner: $owner, name: $name) {
+      ...RepositoryFields
       forks(first: 100, orderBy: { field: STARGAZERS, direction: DESC }) {
         nodes {
-          nameWithOwner
-          stargazerCount
-          forkCount
-          object(expression: "master") {
-            ... on Commit {
-              committedDate
-              history {
-                totalCount
-              }
-            }
-          }
+          ...RepositoryFields
         }
       }
     }
