@@ -10,17 +10,17 @@ describe("client", () => {
     process.env = OLD_ENV; // restore old env
   });
 
-  it("REACT_APP_GITHUB_PAT is set OK by default", () => {
+  it("REACT_APP_GRAPHQL_ENDPOINT is set OK by default", () => {
     const { client } = require("./graphql"); // eslint-disable-line global-require
     // simply check the client got initialised OK
     expect(typeof client.version).toEqual("string");
   });
 
-  it("handles REACT_APP_GITHUB_PAT environment variable", () => {
-    delete process.env.REACT_APP_GITHUB_PAT;
+  it("handles REACT_APP_GRAPHQL_ENDPOINT environment variable", () => {
+    delete process.env.REACT_APP_GRAPHQL_ENDPOINT;
     expect(() => {
       require("./graphql"); // eslint-disable-line global-require
-    }).toThrow("REACT_APP_GITHUB_PAT environment variable must be set");
+    }).toThrow("REACT_APP_GRAPHQL_ENDPOINT environment variable must be set");
   });
 });
 

@@ -5,37 +5,19 @@ import {
   createHttpLink,
   InMemoryCache,
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
 
-const endpoint = "https://api.github.com/graphql";
+const endpoint = process.env.REACT_APP_GRAPHQL_ENDPOINT;
+assert.ok(
+  endpoint,
+  "REACT_APP_GRAPHQL_ENDPOINT environment variable must be set"
+);
 
 const httpLink = createHttpLink({
   uri: endpoint,
 });
 
-/**
- * Base64 to trick GitHub hooks so the token doesn't seem leaked in the commit.
- * Note this token will be accessible from the frontend hence should be very restricted.
- * Only the `public_repo` scope is required.
- */
-const token = process.env.REACT_APP_GITHUB_PAT
-  ? atob(process.env.REACT_APP_GITHUB_PAT)
-  : null;
-assert(
-  // eslint-disable-line no-console
-  token,
-  "REACT_APP_GITHUB_PAT environment variable must be set"
-);
-
-const authLink = setContext((_, { headers }) => ({
-  headers: {
-    ...headers,
-    authorization: `Bearer ${token}`,
-  },
-}));
-
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 

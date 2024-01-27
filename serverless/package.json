@@ -1,0 +1,14 @@
+{
+  "name": "gitpop3-graphql",
+  "version": "1.0.0",
+  "description": "A GitHub GraphQL API proxy to handle PAT token authentication server side.",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "npx functions-framework --target=main"
+  },
+  "author": "",
+  "dependencies": {},
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^3.3.0"
+  }
+}

@@ -1,7 +1,7 @@
 .env
 
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+build
+cloud_function_archive
 
 # misc
 .DS_Store
@@ -24,3 +25,9 @@ yarn-error.log*
 
 # Optional eslint cache
 .eslintcache
+
+# Terraform
+terraform.tfvars
+terraform-service-key.json
+.terraform*
+terraform.tfstate*

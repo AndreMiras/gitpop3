@@ -19,6 +19,6 @@ jobs:
     - run: yarn install
     - run: yarn build
       env:
-        REACT_APP_GITHUB_PAT: ${{ secrets.REACT_APP_GITHUB_PAT }}
+        REACT_APP_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
         REACT_APP_SENTRY_DSN: https://46cd951350084768a0306d2c223f7805@o87984.ingest.sentry.io/5575586
     - run: yarn deploy

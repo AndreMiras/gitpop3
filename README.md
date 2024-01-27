@@ -14,20 +14,29 @@ It allows you to sort forks by "Stars", "Forks" or "Commits" count.
 See [GitPop2](https://github.com/AndreMiras/gitpop2) for the same tool using backend tech.
 
 ## Run
+
 ```sh
 yarn start
 ```
 
 ## Test
+
 ```sh
 yarn lint
 yarn test
 ```
 
 ## Deployment
+
 The app can be deployed on GitHub pages when releasing via:
+
 ```sh
 yarn deploy
 ```
+
 Note a [Personal Access Token](https://docs.github.com/en/graphql/guides/forming-calls-with-graphql#authenticating-with-graphql) should be generated with the `public_repo` scope and set to its base64 form to the `REACT_APP_GITHUB_PAT` environment variable.
 This is required for [Authenticating with GraphQL](https://docs.github.com/en/free-pro-team@latest/graphql/guides/forming-calls-with-graphql#authenticating-with-graphql).
+
+## Cloud Function
+
+See the [serverless](serverless) folder documentation.
