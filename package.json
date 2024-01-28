@@ -29,8 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "lint": "npx prettier --check README.md src serverless terraform",
-    "format": "npx prettier --write README.md src serverless terraform",
+    "lint": "npx prettier --check README.md .github src serverless terraform",
+    "format": "npx prettier --write README.md .github src serverless terraform",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

@@ -9,18 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16.x'
-    - name: git config
-      run: |
-        git config user.name github-pages-deploy-action
-        git config user.email github-pages-deploy-action@@users.noreply.github.com
-        git remote set-url origin https://${{github.actor}}:${{github.token}}@github.com/${{github.repository}}.git
-    - run: yarn install
-    - run: yarn build
-      env:
-        REACT_APP_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
-        REACT_APP_SENTRY_DSN: https://46cd951350084768a0306d2c223f7805@o87984.ingest.sentry.io/5575586
-    - run: yarn deploy
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - name: git config
+        run: |
+          git config user.name github-pages-deploy-action
+          git config user.email github-pages-deploy-action@@users.noreply.github.com
+          git remote set-url origin https://${{github.actor}}:${{github.token}}@github.com/${{github.repository}}.git
+      - run: yarn install
+      - run: yarn build
+        env:
+          REACT_APP_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
+          REACT_APP_SENTRY_DSN: https://46cd951350084768a0306d2c223f7805@o87984.ingest.sentry.io/5575586
+      - run: yarn deploy
