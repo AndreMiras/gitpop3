@@ -6,13 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - run: yarn install
       - run: yarn test
         env:
           REACT_APP_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
       - run: yarn lint
-      - uses: coverallsapp/github-action@v1.1.2
+      - uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
