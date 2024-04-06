@@ -1,8 +1,8 @@
 # GitPop3
 
-[![Tests](https://github.com/AndreMiras/gitpop3/workflows/Tests/badge.svg?branch=develop)](https://github.com/AndreMiras/gitpop3/actions?query=workflow%3ATests)
+[![Tests](https://github.com/AndreMiras/gitpop3/actions/workflows/tests.yml/badge.svg)](https://github.com/AndreMiras/gitpop3/actions/workflows/tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/AndreMiras/gitpop3/badge.svg?branch=develop)](https://coveralls.io/github/AndreMiras/gitpop3?branch=develop)
-[![Deploy](https://github.com/AndreMiras/gitpop3/workflows/Deploy/badge.svg?branch=develop)](https://github.com/AndreMiras/gitpop3/actions?query=workflow%3ADeploy)
+[![Deploy](https://github.com/AndreMiras/gitpop3/actions/workflows/deploy.yml/badge.svg)](https://github.com/AndreMiras/gitpop3/actions/workflows/deploy.yml)
 
 Find the most popular fork on GitHub.
 

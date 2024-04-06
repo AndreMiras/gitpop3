@@ -22,7 +22,6 @@ Array [
     <div
       className="modal-dialog"
       onMouseDown={[Function]}
-      role="document"
     >
       <div
         className="modal-content"
@@ -85,7 +84,6 @@ Array [
     <div
       className="modal-dialog"
       onMouseDown={[Function]}
-      role="document"
     >
       <div
         className="modal-content"
