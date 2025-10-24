@@ -8,8 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
+        with:
+          node-version: "16.x"
       - run: yarn install
       - run: yarn tsc
+      - run: yarn build
       - run: yarn test
         env:
           REACT_APP_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
