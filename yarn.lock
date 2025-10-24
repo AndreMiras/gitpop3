@@ -2001,10 +2001,10 @@
   dependencies:
     "@types/react" "^17"
 
-"@types/react-js-pagination@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@types/react-js-pagination/-/react-js-pagination-3.0.4.tgz#810c646128d8f498edcd6e92915f84174914b198"
-  integrity sha512-yka+27eZ6Mg9cmwT2sADgLn3ij9hVfpPu5dk+Y/0k1xS52WZOz0LJnn4y4VKGmR4mf/tG5Ga7Dody/xmfiB0Fg==
+"@types/react-js-pagination@^3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-js-pagination/-/react-js-pagination-3.0.7.tgz#6091facccc45584908a5cc959b784e2d65066a02"
+  integrity sha512-h16F5eFcVaTO5LTT5jJrvK8SxTlxkuv03ZKt/e6L3GPng/0TZTqhEKEyD8F5XksLeKBalsS1tTN2foJLWv/6mA==
   dependencies:
     "@types/react" "*"
 
