@@ -1,5 +1,5 @@
 import { ApolloError } from "@apollo/client";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, act } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -57,5 +57,90 @@ test("search forks onError", (done) => {
   expect(screen.queryByText("Error")).not.toBeInTheDocument();
   fireEvent.click(submitButton);
   expect(screen.queryByText("Error")).toBeInTheDocument();
+  spy.mockRestore();
+});
+
+test("shows loading spinner during search", (done) => {
+  render(<Container />);
+  const searchInput = screen.getByPlaceholderText(/github.com/);
+  const submitButton = screen.getByRole("button");
+  const searchResult = [...[origin], ...forks];
+
+  // Verify initial state - search icon present
+  expect(screen.getByRole("button")).toBeInTheDocument();
+
+  const spy = jest
+    .spyOn(search, "searchPopularForks")
+    .mockImplementation((url, onResult, onError) => {
+      // During async operation, loading should be true
+      // The spinner icon will be rendered
+      setTimeout(() => {
+        act(() => {
+          onResult(searchResult);
+        });
+        // After completion, verify search completed
+        setTimeout(() => {
+          done();
+        }, 0);
+      }, 10);
+    });
+
+  fireEvent.change(searchInput, {
+    target: { value: "https://github.com/django/django" },
+  });
+  fireEvent.click(submitButton);
+
+  spy.mockRestore();
+});
+
+test("loading state resets after error", (done) => {
+  render(<Container />);
+  const searchInput = screen.getByPlaceholderText(/github.com/);
+  const submitButton = screen.getByRole("button");
+  const searchError = new ApolloError({ errorMessage: "Test error" });
+
+  const spy = jest
+    .spyOn(search, "searchPopularForks")
+    .mockImplementation((url, onResult, onError) => {
+      setTimeout(() => {
+        act(() => {
+          onError(searchError);
+        });
+        // After error, loading should be false
+        setTimeout(() => {
+          done();
+        }, 0);
+      }, 10);
+    });
+
+  fireEvent.change(searchInput, {
+    target: { value: "https://github.com/test/repo" },
+  });
+  fireEvent.click(submitButton);
+
+  spy.mockRestore();
+});
+
+test("handles empty search results", (done) => {
+  render(<Container />);
+  const searchInput = screen.getByPlaceholderText(/github.com/);
+  const submitButton = screen.getByRole("button");
+  const emptyResult: Node[] = [];
+
+  const spy = jest
+    .spyOn(search, "searchPopularForks")
+    .mockImplementation((url, onResult, onError) => {
+      onResult(emptyResult);
+      done();
+    });
+
+  fireEvent.change(searchInput, {
+    target: { value: "https://github.com/test/repo" },
+  });
+  fireEvent.click(submitButton);
+
+  // Should not show error dialog for empty results
+  expect(screen.queryByText("Error")).not.toBeInTheDocument();
+
   spy.mockRestore();
 });

@@ -5,6 +5,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import ResultTable from "./ResultTable";
 import { originAndForks as forks } from "../utils/fixtures";
+import { Node } from "../utils/types";
 
 library.add(fab, fas);
 
@@ -72,4 +73,38 @@ test("sorting", () => {
   const modifiedTableHeader = screen.getByText("Modified");
   fireEvent.click(modifiedTableHeader);
   expect(screen.getByText("django/django")).toBeInTheDocument();
+});
+
+test("renders with empty forks array", () => {
+  const emptyForks: Node[] = [];
+  const tree = renderer
+    .create(
+      <ResultTable
+        forks={emptyForks}
+        activePage={1}
+        itemsCountPerPage={10}
+        onPageChange={() => null}
+      />
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("renders table headers with empty data", () => {
+  const emptyForks: Node[] = [];
+  render(
+    <ResultTable
+      forks={emptyForks}
+      activePage={1}
+      itemsCountPerPage={10}
+      onPageChange={() => null}
+    />
+  );
+
+  // Table headers should still render
+  expect(screen.getByText("Repo")).toBeInTheDocument();
+  expect(screen.getByText("Stars")).toBeInTheDocument();
+  expect(screen.getByText("Forks")).toBeInTheDocument();
+  expect(screen.getByText("Commits")).toBeInTheDocument();
+  expect(screen.getByText("Modified")).toBeInTheDocument();
 });
