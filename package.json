@@ -21,7 +21,7 @@
     "react-bootstrap": "^1.6.8",
     "react-dom": "^17",
     "react-js-pagination": "^3.0.3",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
