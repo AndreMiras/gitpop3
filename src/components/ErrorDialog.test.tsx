@@ -38,7 +38,7 @@ describe("ErrorDialog", () => {
   test("onClose", () => {
     const onCloseMock = vi.fn();
     render(
-      <ErrorDialog detail="Error details onClose" onClose={onCloseMock} />
+      <ErrorDialog detail="Error details onClose" onClose={onCloseMock} />,
     );
     const closeButton = screen.getByRole("button", {
       hidden: true,

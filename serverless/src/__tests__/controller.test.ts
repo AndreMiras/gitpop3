@@ -28,15 +28,15 @@ describe("setCors", () => {
 
     expect(setHeaderSpy).toHaveBeenCalledWith(
       "Access-Control-Allow-Origin",
-      "https://andremiras.github.io"
+      "https://andremiras.github.io",
     );
     expect(setSpy).toHaveBeenCalledWith(
       "Access-Control-Allow-Methods",
-      "GET, POST, OPTIONS"
+      "GET, POST, OPTIONS",
     );
     expect(setSpy).toHaveBeenCalledWith(
       "Access-Control-Allow-Headers",
-      "Content-Type"
+      "Content-Type",
     );
   });
 
@@ -50,12 +50,12 @@ describe("setCors", () => {
 
     expect(setHeaderSpy).not.toHaveBeenCalledWith(
       "Access-Control-Allow-Origin",
-      "https://evil.com"
+      "https://evil.com",
     );
     // Should still set other CORS headers
     expect(setSpy).toHaveBeenCalledWith(
       "Access-Control-Allow-Methods",
-      "GET, POST, OPTIONS"
+      "GET, POST, OPTIONS",
     );
   });
 });
@@ -110,7 +110,7 @@ describe("main", () => {
 
     expect(statusSpy).toHaveBeenCalledWith(500);
     expect(sendSpy).toHaveBeenCalledWith(
-      "GitHub API URL or PAT is not configured."
+      "GitHub API URL or PAT is not configured.",
     );
   });
 
@@ -136,7 +136,7 @@ describe("main", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ query: "{ repository { name } }" }),
-      })
+      }),
     );
 
     // Verify response was sent correctly

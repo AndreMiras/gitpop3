@@ -21,7 +21,7 @@ test("renders", () => {
         activePage={1}
         itemsCountPerPage={2}
         onPageChange={() => null}
-      />
+      />,
     )
     .toJSON();
   spy.mockRestore();
@@ -35,7 +35,7 @@ test("sorting", () => {
       activePage={1}
       itemsCountPerPage={1}
       onPageChange={() => null}
-    />
+    />,
   );
   // sorted by stargazerCount default
   expect(screen.getByText(forks[0].nameWithOwner)).toBeInTheDocument();
@@ -47,14 +47,14 @@ test("sorting", () => {
   expect(screen.queryByText("django/django")).not.toBeInTheDocument();
   expect(screen.queryByText("django-nonrel/django")).not.toBeInTheDocument();
   expect(
-    screen.getByText("FlipperPA/django-mssql-backend")
+    screen.getByText("FlipperPA/django-mssql-backend"),
   ).toBeInTheDocument();
   // clicking again should invert it
   fireEvent.click(repoTableHeader);
   expect(screen.queryByText("django/django")).not.toBeInTheDocument();
   expect(screen.getByText("django-nonrel/django")).toBeInTheDocument();
   expect(
-    screen.queryByText("FlipperPA/django-mssql-backend")
+    screen.queryByText("FlipperPA/django-mssql-backend"),
   ).not.toBeInTheDocument();
   // same thing for stars
   const starsTableHeader = screen.getByText("Stars");
@@ -85,7 +85,7 @@ test("renders with empty forks array", () => {
         activePage={1}
         itemsCountPerPage={10}
         onPageChange={() => null}
-      />
+      />,
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
@@ -99,7 +99,7 @@ test("renders table headers with empty data", () => {
       activePage={1}
       itemsCountPerPage={10}
       onPageChange={() => null}
-    />
+    />,
   );
 
   // Table headers should still render

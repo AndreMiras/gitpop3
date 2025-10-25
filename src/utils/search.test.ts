@@ -43,11 +43,11 @@ test("onError", async () => {
   const querySpy = vi
     .spyOn(client, "query")
     .mockReturnValue(
-      Promise.reject(new ApolloError({ errorMessage: expected }))
+      Promise.reject(new ApolloError({ errorMessage: expected })),
     );
 
   await expect(searchPopularForks(url)).rejects.toEqual(
-    new ApolloError({ errorMessage: expected })
+    new ApolloError({ errorMessage: expected }),
   );
 
   expect(querySpy).toHaveBeenNthCalledWith(1, {

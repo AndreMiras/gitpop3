@@ -14,7 +14,7 @@ test("renders", () => {
     .create(
       <MemoryRouter>
         <Navigation />
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

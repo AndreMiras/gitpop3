@@ -20,7 +20,7 @@ const renderWithRouter = (initialRoute = "/") => {
         <Route path="/" element={<Container />} />
         <Route path="/:owner/:repo" element={<Container />} />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
@@ -29,7 +29,7 @@ test("renders", () => {
     .create(
       <MemoryRouter>
         <Container />
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
@@ -168,7 +168,7 @@ test("auto-search from URL parameters", async () => {
 
   // Form should be pre-populated
   const searchInput = screen.getByPlaceholderText(
-    /github.com/
+    /github.com/,
   ) as HTMLInputElement;
   expect(searchInput.value).toBe("https://github.com/django/django");
 

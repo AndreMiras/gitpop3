@@ -64,11 +64,11 @@ test("renders with initial URL", () => {
   const onSubmit = vi.fn();
   const initialUrl = "https://github.com/django/django";
   render(
-    <PopForm onSubmit={onSubmit} loading={false} initialUrl={initialUrl} />
+    <PopForm onSubmit={onSubmit} loading={false} initialUrl={initialUrl} />,
   );
 
   const searchInput = screen.getByPlaceholderText(
-    /github.com/
+    /github.com/,
   ) as HTMLInputElement;
   expect(searchInput.value).toBe(initialUrl);
 });
@@ -80,11 +80,11 @@ test("updates when initialUrl prop changes", () => {
       onSubmit={onSubmit}
       loading={false}
       initialUrl="https://github.com/django/django"
-    />
+    />,
   );
 
   let searchInput = screen.getByPlaceholderText(
-    /github.com/
+    /github.com/,
   ) as HTMLInputElement;
   expect(searchInput.value).toBe("https://github.com/django/django");
 
@@ -93,7 +93,7 @@ test("updates when initialUrl prop changes", () => {
       onSubmit={onSubmit}
       loading={false}
       initialUrl="https://github.com/python/cpython"
-    />
+    />,
   );
 
   searchInput = screen.getByPlaceholderText(/github.com/) as HTMLInputElement;

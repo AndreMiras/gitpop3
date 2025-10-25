@@ -13,11 +13,11 @@ type SortFunc = (collection: any, order: Direction) => any;
 const paginatedForks = (
   forks: Node[],
   activePage: number,
-  itemsCountPerPage: number
+  itemsCountPerPage: number,
 ) =>
   forks.slice(
     (activePage - 1) * itemsCountPerPage,
-    activePage * itemsCountPerPage
+    activePage * itemsCountPerPage,
   );
 
 const sortIconDirection = (direction: Direction) =>
@@ -87,15 +87,15 @@ const ResultTable: FunctionComponent<ResultTableProps> = ({
     (collection: any[], order: Direction) =>
       lodashOrderBy(collection, [attribute], [order]);
   const sortByNameWithOwner = sortObjectsFunc((x) =>
-    x.nameWithOwner.toLowerCase()
+    x.nameWithOwner.toLowerCase(),
   );
   const sortByStargazerCount = sortObjectsFunc((x) => x.stargazerCount);
   const sortByForkCount = sortObjectsFunc((x) => x.forkCount);
   const sortByCommits = sortObjectsFunc(
-    (x) => x.defaultBranchRef.target.history.totalCount
+    (x) => x.defaultBranchRef.target.history.totalCount,
   );
   const sortByCommittedDate = sortObjectsFunc((x) =>
-    Date.parse(x.defaultBranchRef.target.committedDate)
+    Date.parse(x.defaultBranchRef.target.committedDate),
   );
   const [orderBy, setOrderBy] = useState<{
     column: string;
@@ -154,7 +154,7 @@ const ResultTable: FunctionComponent<ResultTableProps> = ({
           {paginatedForks(sortedForks, activePage, itemsCountPerPage).map(
             (fork) => (
               <ForkLine key={fork.nameWithOwner} info={fork} />
-            )
+            ),
           )}
         </tbody>
       </Table>
