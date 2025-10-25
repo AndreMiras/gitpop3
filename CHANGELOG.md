@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [2025.10.25]
   - Migrate from Create React App to Vite
   - Introduce serverless token auth proxy, fixes #20
   - Add React Router for URL-based navigation
