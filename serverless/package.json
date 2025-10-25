@@ -13,6 +13,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "author": "",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@google-cloud/functions-framework": "^3.3.0",

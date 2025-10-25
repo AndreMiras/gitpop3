@@ -3,6 +3,7 @@
   "homepage": "https://andremiras.github.io/gitpop3/",
   "version": "2020.12.19",
   "private": true,
+  "license": "MIT",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0",
