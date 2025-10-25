@@ -4,11 +4,10 @@ import {
   createHttpLink,
   InMemoryCache,
 } from "@apollo/client";
+import assert from "assert";
 
 const endpoint = import.meta.env.VITE_GRAPHQL_ENDPOINT;
-if (!endpoint) {
-  throw new Error("VITE_GRAPHQL_ENDPOINT environment variable must be set");
-}
+assert.ok(endpoint, "VITE_GRAPHQL_ENDPOINT environment variable must be set");
 
 const httpLink = createHttpLink({
   uri: endpoint,
