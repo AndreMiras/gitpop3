@@ -17,6 +17,13 @@ jobs:
         env:
           VITE_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
       - run: yarn lint
+
+      - name: Test serverless function
+        run: |
+          cd serverless
+          yarn install
+          yarn test
+
       - uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

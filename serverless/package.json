@@ -7,11 +7,16 @@
   "description": "A GitHub GraphQL API proxy to handle PAT token authentication server side.",
   "main": "build/index.js",
   "scripts": {
-    "start": "npx functions-framework --target=main"
+    "start": "npx functions-framework --target=main",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "author": "",
   "dependencies": {},
   "devDependencies": {
-    "@google-cloud/functions-framework": "^3.3.0"
+    "@google-cloud/functions-framework": "^3.3.0",
+    "vitest": "^1.1.0",
+    "@vitest/coverage-v8": "^1.1.0"
   }
 }

@@ -21,6 +21,37 @@ source .env
 npx functions-framework --target=main
 ```
 
+## Testing
+
+The serverless function has unit tests covering CORS, environment validation, and proxy functionality.
+
+### Run Tests
+
+```bash
+# Run all tests once
+yarn test
+
+# Run tests in watch mode (development)
+yarn test:watch
+
+# Run tests with coverage report
+yarn test:coverage
+```
+
+### Test Coverage
+
+After running `yarn test:coverage`, open `coverage/index.html` in a browser to view the coverage report.
+
+### CI/CD
+
+Tests run automatically on every push via GitHub Actions. The workflow:
+
+1. Installs dependencies
+2. Runs all tests
+3. Reports results
+
+Tests use mocked GitHub API responses - no real API calls are made during testing.
+
 ## Deployment
 
 The Cloud Function is deployed using Terraform from the project root directory.

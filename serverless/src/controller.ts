@@ -51,4 +51,4 @@ const main: HttpFunction = async (req: Request, res: Response) => {
   }
 };
 
-export { main };
+export { main, setCors };
