@@ -1,6 +1,7 @@
 import { describe, it, test, expect, vi } from "vitest";
 import { ApolloError } from "@apollo/client";
 import { fireEvent, render, screen, act } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import renderer from "react-test-renderer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -12,13 +13,30 @@ import Container from "./Container";
 
 library.add(fab, fas);
 
+const renderWithRouter = (initialRoute = "/") => {
+  return render(
+    <MemoryRouter initialEntries={[initialRoute]}>
+      <Routes>
+        <Route path="/" element={<Container />} />
+        <Route path="/:owner/:repo" element={<Container />} />
+      </Routes>
+    </MemoryRouter>
+  );
+};
+
 test("renders", () => {
-  const tree = renderer.create(<Container />).toJSON();
+  const tree = renderer
+    .create(
+      <MemoryRouter>
+        <Container />
+      </MemoryRouter>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test("search forks", async () => {
-  render(<Container />);
+  renderWithRouter();
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const forkId = forks[0].nameWithOwner;
@@ -37,7 +55,7 @@ test("search forks", async () => {
 });
 
 test("search forks onError", async () => {
-  render(<Container />);
+  renderWithRouter();
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const forkId = "django-nonrel/django-404";
@@ -58,7 +76,7 @@ test("search forks onError", async () => {
 });
 
 test("shows loading spinner during search", async () => {
-  render(<Container />);
+  renderWithRouter();
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const searchResult = [...[origin], ...forks];
@@ -88,7 +106,7 @@ test("shows loading spinner during search", async () => {
 });
 
 test("loading state resets after error", async () => {
-  render(<Container />);
+  renderWithRouter();
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const searchError = new ApolloError({ errorMessage: "Test error" });
@@ -113,7 +131,7 @@ test("loading state resets after error", async () => {
 });
 
 test("handles empty search results", async () => {
-  render(<Container />);
+  renderWithRouter();
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const emptyResult: Node[] = [];
@@ -132,6 +150,27 @@ test("handles empty search results", async () => {
 
   // Should not show error dialog for empty results
   expect(screen.queryByText("Error")).not.toBeInTheDocument();
+
+  spy.mockRestore();
+});
+
+test("auto-search from URL parameters", async () => {
+  const searchResult = [...[origin], ...forks];
+  const spy = vi
+    .spyOn(search, "searchPopularForks")
+    .mockResolvedValue(searchResult);
+
+  renderWithRouter("/django/django");
+
+  // Should trigger automatic search
+  await screen.findByText(forks[0].nameWithOwner);
+  expect(spy).toHaveBeenCalledWith("https://github.com/django/django");
+
+  // Form should be pre-populated
+  const searchInput = screen.getByPlaceholderText(
+    /github.com/
+  ) as HTMLInputElement;
+  expect(searchInput.value).toBe("https://github.com/django/django");
 
   spy.mockRestore();
 });

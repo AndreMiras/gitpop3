@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -13,11 +14,16 @@ setupSentry();
 library.add(fab, fas);
 
 const App: FunctionComponent = () => (
-  <div className="App">
-    <Navigation />
-    <Container />
-    <Footer />
-  </div>
+  <HashRouter>
+    <div className="App">
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Container />} />
+        <Route path="/:owner/:repo" element={<Container />} />
+      </Routes>
+      <Footer />
+    </div>
+  </HashRouter>
 );
 
 export default App;

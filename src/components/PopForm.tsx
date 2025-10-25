@@ -1,23 +1,40 @@
-import React, { FormEvent, FunctionComponent, useState } from "react";
+import React, {
+  FormEvent,
+  FunctionComponent,
+  useState,
+  useEffect,
+} from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { urlMatch } from "../utils/validators";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-type SearchIconProps = {
-  loading: boolean;
+const SearchIcon: FunctionComponent<{ loading: boolean }> = ({ loading }) => {
+  const icon = loading ? ("spinner" as IconProp) : ("search" as IconProp);
+  const spin = loading ? true : false;
+  return <FontAwesomeIcon icon={icon} spin={spin} />;
 };
-
-const SearchIcon: FunctionComponent<SearchIconProps> = ({ loading }) => (
-  <FontAwesomeIcon icon={loading ? "spinner" : "search"} spin={loading} />
-);
 
 type PopFormProps = {
   onSubmit: (url: string) => void;
   loading: boolean;
+  initialUrl?: string;
 };
 
-const PopForm: FunctionComponent<PopFormProps> = ({ onSubmit, loading }) => {
-  const [url, setUrl] = useState("");
+const PopForm: FunctionComponent<PopFormProps> = ({
+  onSubmit,
+  loading,
+  initialUrl,
+}) => {
+  const [url, setUrl] = useState(initialUrl || "");
+
+  // Update local state if initialUrl prop changes
+  useEffect(() => {
+    if (initialUrl) {
+      setUrl(initialUrl);
+    }
+  }, [initialUrl]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (urlMatch(url) === null) {
@@ -26,24 +43,26 @@ const PopForm: FunctionComponent<PopFormProps> = ({ onSubmit, loading }) => {
       onSubmit(url);
     }
   };
+
   const isInvalid = url !== "" && urlMatch(url) === null;
+
   return (
     <Form onSubmit={handleSubmit}>
-      <InputGroup className="mb-3">
+      <InputGroup className="my-3">
         <FormControl
           placeholder="https://github.com/django/django"
           onChange={(e) => setUrl(e.target.value)}
           isInvalid={isInvalid}
+          value={url}
         />
-        <InputGroup.Append>
-          <Button
-            type="submit"
-            variant="outline-secondary"
-            onClick={handleSubmit}
-          >
-            <SearchIcon loading={loading} />
-          </Button>
-        </InputGroup.Append>
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={loading}
+          onClick={handleSubmit}
+        >
+          <SearchIcon loading={loading} />
+        </Button>
       </InputGroup>
     </Form>
   );
