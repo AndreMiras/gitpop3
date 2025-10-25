@@ -13,6 +13,11 @@ It allows you to sort forks by "Stars", "Forks" or "Commits" count.
 ![Screenshot](https://i.imgur.com/4Ac311o.png)
 See [GitPop2](https://github.com/AndreMiras/gitpop2) for the same tool using backend tech.
 
+## Requirements
+
+- Node.js 20.x or higher
+- Yarn 1.22.0 or higher
+
 ## Run
 
 ```sh

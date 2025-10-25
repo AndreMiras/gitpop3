@@ -4,8 +4,8 @@
   "version": "2020.12.19",
   "private": true,
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0",
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0",
     "yarn": ">=1.22.0"
   },
   "dependencies": {
