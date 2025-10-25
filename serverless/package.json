@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@google-cloud/functions-framework": "^3.3.0",
+    "@google-cloud/functions-framework": "^4.0.0",
     "vitest": "^1.1.0",
     "@vitest/coverage-v8": "^1.1.0"
   }
