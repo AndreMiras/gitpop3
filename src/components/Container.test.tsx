@@ -17,7 +17,7 @@ test("renders", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("search forks", () => {
+test("search forks", async () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
@@ -25,19 +25,18 @@ test("search forks", () => {
   const searchResult = [...[origin], ...forks];
   const spy = vi
     .spyOn(search, "searchPopularForks")
-    .mockImplementation((url, onResult, onError) => {
-      onResult(searchResult);
-    });
+    .mockResolvedValue(searchResult);
   expect(screen.queryByText(forkId)).toBeNull();
   fireEvent.change(searchInput, {
     target: { value: "https://github.com/django/django" },
   });
   fireEvent.click(submitButton);
+  await screen.findByText(forkId);
   expect(screen.queryByText(forkId)).toBeInTheDocument();
   spy.mockRestore();
 });
 
-test("search forks onError", () => {
+test("search forks onError", async () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
@@ -46,15 +45,14 @@ test("search forks onError", () => {
   const searchError = new ApolloError({ errorMessage: expected });
   const spy = vi
     .spyOn(search, "searchPopularForks")
-    .mockImplementation((url, onResult, onError) => {
-      onError(searchError);
-    });
+    .mockRejectedValue(searchError);
   expect(screen.queryByText(forkId)).toBeNull();
   fireEvent.change(searchInput, {
     target: { value: `https://github.com/${forkId}` },
   });
   expect(screen.queryByText("Error")).not.toBeInTheDocument();
   fireEvent.click(submitButton);
+  await screen.findByText("Error");
   expect(screen.queryByText("Error")).toBeInTheDocument();
   spy.mockRestore();
 });
@@ -68,17 +66,15 @@ test("shows loading spinner during search", async () => {
   // Verify initial state - search icon present
   expect(screen.getByRole("button")).toBeInTheDocument();
 
-  const spy = vi
-    .spyOn(search, "searchPopularForks")
-    .mockImplementation((url, onResult, onError) => {
-      // During async operation, loading should be true
-      // The spinner icon will be rendered
+  const spy = vi.spyOn(search, "searchPopularForks").mockImplementation(() => {
+    // During async operation, loading should be true
+    // The spinner icon will be rendered
+    return new Promise((resolve) => {
       setTimeout(() => {
-        act(() => {
-          onResult(searchResult);
-        });
+        resolve(searchResult);
       }, 10);
     });
+  });
 
   fireEvent.change(searchInput, {
     target: { value: "https://github.com/django/django" },
@@ -97,15 +93,13 @@ test("loading state resets after error", async () => {
   const submitButton = screen.getByRole("button");
   const searchError = new ApolloError({ errorMessage: "Test error" });
 
-  const spy = vi
-    .spyOn(search, "searchPopularForks")
-    .mockImplementation((url, onResult, onError) => {
+  const spy = vi.spyOn(search, "searchPopularForks").mockImplementation(() => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
-        act(() => {
-          onError(searchError);
-        });
+        reject(searchError);
       }, 10);
     });
+  });
 
   fireEvent.change(searchInput, {
     target: { value: "https://github.com/test/repo" },
@@ -118,7 +112,7 @@ test("loading state resets after error", async () => {
   spy.mockRestore();
 });
 
-test("handles empty search results", () => {
+test("handles empty search results", async () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
@@ -126,14 +120,15 @@ test("handles empty search results", () => {
 
   const spy = vi
     .spyOn(search, "searchPopularForks")
-    .mockImplementation((url, onResult, onError) => {
-      onResult(emptyResult);
-    });
+    .mockResolvedValue(emptyResult);
 
   fireEvent.change(searchInput, {
     target: { value: "https://github.com/test/repo" },
   });
   fireEvent.click(submitButton);
+
+  // Wait for async operation to complete
+  await new Promise((resolve) => setTimeout(resolve, 10));
 
   // Should not show error dialog for empty results
   expect(screen.queryByText("Error")).not.toBeInTheDocument();

@@ -11,21 +11,20 @@ const Container: FunctionComponent = () => {
   const [errorDetail, setErrorDetail] = useState<Error | null>(null);
   const [activePage, setActivePage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const onResult = (nodes: Node[]) => {
-    setForks(nodes);
-    setErrorDetail(null);
-    setLoading(false);
-  };
-  const onError = (error: Error) => {
-    setErrorDetail(error);
-    setLoading(false);
-  };
   const errorDialog = errorDetail ? (
     <ErrorDialog detail={errorDetail.message} />
   ) : null;
-  const onSubmit = (url: string) => {
+  const onSubmit = async (url: string) => {
     setLoading(true);
-    searchPopularForks(url, onResult, onError);
+    try {
+      const nodes = await searchPopularForks(url);
+      setForks(nodes);
+      setErrorDetail(null);
+      setLoading(false);
+    } catch (error) {
+      setErrorDetail(error as Error);
+      setLoading(false);
+    }
   };
   const resultTable = forks ? (
     <ResultTable

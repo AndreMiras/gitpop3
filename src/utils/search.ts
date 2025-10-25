@@ -8,19 +8,13 @@ const concatForksWithRepo = (result: Result) => {
   return [...[origin], ...forks.nodes];
 };
 
-const searchPopularForks = (
-  url: string,
-  onResult: (result: Node[]) => void,
-  onError: (error: ApolloError) => void
-) => {
+const searchPopularForks = async (url: string): Promise<Node[]> => {
   const [owner, name] = splitUrl(url) || [null, null];
-  client
-    .query({
-      query: GET_FORKS_QUERY,
-      variables: { owner, name },
-    })
-    .then((result) => onResult(concatForksWithRepo(result)))
-    .catch((error) => onError(error));
+  const result = await client.query({
+    query: GET_FORKS_QUERY,
+    variables: { owner, name },
+  });
+  return concatForksWithRepo(result);
 };
 
 export { searchPopularForks };
