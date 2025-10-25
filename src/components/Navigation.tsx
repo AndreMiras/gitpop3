@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Navigation: FunctionComponent = () => (
   <Navbar bg="dark" variant="dark" expand="sm" className="mb-4">
     <Container>
-      <Navbar.Brand href={process.env.PUBLIC_URL}>
+      <Navbar.Brand href={import.meta.env.BASE_URL}>
         <FontAwesomeIcon icon="code-branch" /> GitPop3
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Nav className="mr-auto">
-          <Nav.Link href={process.env.PUBLIC_URL}>
+          <Nav.Link href={import.meta.env.BASE_URL}>
             <FontAwesomeIcon icon="home" /> Home
           </Nav.Link>
           <Nav.Link href="https://github.com/AndreMiras/gitpop3">

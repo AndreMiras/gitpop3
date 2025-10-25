@@ -7,7 +7,7 @@ const setupSentry = (): boolean => {
     return false;
   }
   Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN,
+    dsn: import.meta.env.VITE_SENTRY_DSN,
     release: version,
     autoSessionTracking: true,
     integrations: [new Integrations.BrowserTracing()],

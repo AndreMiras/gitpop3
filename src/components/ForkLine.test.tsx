@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi } from "vitest";
 import React from "react";
 import renderer from "react-test-renderer";
 import ForkLine from "./ForkLine";
@@ -16,7 +17,7 @@ test("renders", () => {
       },
     },
   };
-  const spy = jest
+  const spy = vi
     .spyOn(Date, "now")
     .mockImplementation(() => new Date("2020-12-08T19:18:03.135Z").valueOf());
   const tree = renderer.create(<ForkLine info={info} />).toJSON();

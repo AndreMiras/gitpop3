@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -10,7 +11,7 @@ import { Node } from "../utils/types";
 library.add(fab, fas);
 
 test("renders", () => {
-  const spy = jest
+  const spy = vi
     .spyOn(Date, "now")
     .mockImplementation(() => new Date("2020-12-18T19:18:03.135Z").valueOf());
   const tree = renderer

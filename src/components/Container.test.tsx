@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi } from "vitest";
 import { ApolloError } from "@apollo/client";
 import { fireEvent, render, screen, act } from "@testing-library/react";
 import renderer from "react-test-renderer";
@@ -16,17 +17,16 @@ test("renders", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("search forks", (done) => {
+test("search forks", () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const forkId = forks[0].nameWithOwner;
   const searchResult = [...[origin], ...forks];
-  const spy = jest
+  const spy = vi
     .spyOn(search, "searchPopularForks")
     .mockImplementation((url, onResult, onError) => {
       onResult(searchResult);
-      done();
     });
   expect(screen.queryByText(forkId)).toBeNull();
   fireEvent.change(searchInput, {
@@ -37,18 +37,17 @@ test("search forks", (done) => {
   spy.mockRestore();
 });
 
-test("search forks onError", (done) => {
+test("search forks onError", () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const forkId = "django-nonrel/django-404";
   const expected = `Could not resolve to a Repository with the name '${forkId}'.`;
   const searchError = new ApolloError({ errorMessage: expected });
-  const spy = jest
+  const spy = vi
     .spyOn(search, "searchPopularForks")
     .mockImplementation((url, onResult, onError) => {
       onError(searchError);
-      done();
     });
   expect(screen.queryByText(forkId)).toBeNull();
   fireEvent.change(searchInput, {
@@ -60,7 +59,7 @@ test("search forks onError", (done) => {
   spy.mockRestore();
 });
 
-test("shows loading spinner during search", (done) => {
+test("shows loading spinner during search", async () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
@@ -69,7 +68,7 @@ test("shows loading spinner during search", (done) => {
   // Verify initial state - search icon present
   expect(screen.getByRole("button")).toBeInTheDocument();
 
-  const spy = jest
+  const spy = vi
     .spyOn(search, "searchPopularForks")
     .mockImplementation((url, onResult, onError) => {
       // During async operation, loading should be true
@@ -78,10 +77,6 @@ test("shows loading spinner during search", (done) => {
         act(() => {
           onResult(searchResult);
         });
-        // After completion, verify search completed
-        setTimeout(() => {
-          done();
-        }, 0);
       }, 10);
     });
 
@@ -90,26 +85,25 @@ test("shows loading spinner during search", (done) => {
   });
   fireEvent.click(submitButton);
 
+  // Wait for async operations
+  await new Promise((resolve) => setTimeout(resolve, 20));
+
   spy.mockRestore();
 });
 
-test("loading state resets after error", (done) => {
+test("loading state resets after error", async () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const searchError = new ApolloError({ errorMessage: "Test error" });
 
-  const spy = jest
+  const spy = vi
     .spyOn(search, "searchPopularForks")
     .mockImplementation((url, onResult, onError) => {
       setTimeout(() => {
         act(() => {
           onError(searchError);
         });
-        // After error, loading should be false
-        setTimeout(() => {
-          done();
-        }, 0);
       }, 10);
     });
 
@@ -118,20 +112,22 @@ test("loading state resets after error", (done) => {
   });
   fireEvent.click(submitButton);
 
+  // Wait for async operations
+  await new Promise((resolve) => setTimeout(resolve, 20));
+
   spy.mockRestore();
 });
 
-test("handles empty search results", (done) => {
+test("handles empty search results", () => {
   render(<Container />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const submitButton = screen.getByRole("button");
   const emptyResult: Node[] = [];
 
-  const spy = jest
+  const spy = vi
     .spyOn(search, "searchPopularForks")
     .mockImplementation((url, onResult, onError) => {
       onResult(emptyResult);
-      done();
     });
 
   fireEvent.change(searchInput, {

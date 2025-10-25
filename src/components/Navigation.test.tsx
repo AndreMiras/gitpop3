@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi } from "vitest";
 import React from "react";
 import renderer from "react-test-renderer";
 import { library } from "@fortawesome/fontawesome-svg-core";

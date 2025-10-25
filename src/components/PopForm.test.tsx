@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi } from "vitest";
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render, screen } from "@testing-library/react";
@@ -26,7 +27,7 @@ describe.each([true, false])("loading='%s'", (loading) => {
 });
 
 test("submit", () => {
-  const onSubmit = jest.fn();
+  const onSubmit = vi.fn();
   render(<PopForm onSubmit={onSubmit} loading={false} />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const expectedUrl = "https://github.com/django/django";
@@ -50,7 +51,7 @@ test("submit", () => {
  * Empty form should not trigger the submit callback
  */
 test("submit empty", () => {
-  const onSubmit = jest.fn();
+  const onSubmit = vi.fn();
   render(<PopForm onSubmit={onSubmit} loading={false} />);
   const searchInput = screen.getByPlaceholderText(/github.com/);
   const url = "";

@@ -1,7 +1,7 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ErrorDialog onClose omitted 1`] = `
-Array [
+exports[`ErrorDialog > onClose omitted 1`] = `
+[
   <div
     className="modal-backdrop show"
     onClick={[Function]}
@@ -13,7 +13,7 @@ Array [
     onMouseUp={[Function]}
     role="dialog"
     style={
-      Object {
+      {
         "display": "block",
       }
     }
@@ -62,8 +62,8 @@ Array [
 ]
 `;
 
-exports[`ErrorDialog renders 1`] = `
-Array [
+exports[`ErrorDialog > renders 1`] = `
+[
   <div
     className="modal-backdrop show"
     onClick={[Function]}
@@ -75,7 +75,7 @@ Array [
     onMouseUp={[Function]}
     role="dialog"
     style={
-      Object {
+      {
         "display": "block",
       }
     }

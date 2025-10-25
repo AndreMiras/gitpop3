@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi } from "vitest";
 import { splitUrl, urlMatch } from "./validators";
 
 const validMatch = ["AndreMiras", "gitpop3"];

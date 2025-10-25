@@ -1,3 +1,4 @@
+import { describe, it, test, expect, vi, beforeAll, afterAll } from "vitest";
 import React, { ReactNode, ReactPortal } from "react";
 import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
@@ -34,11 +35,15 @@ describe("ErrorDialog", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test("onClose", (done) => {
-    render(<ErrorDialog detail="Error details onClose" onClose={done} />);
+  test("onClose", () => {
+    const onCloseMock = vi.fn();
+    render(
+      <ErrorDialog detail="Error details onClose" onClose={onCloseMock} />
+    );
     const closeButton = screen.getByRole("button", {
       hidden: true,
     });
     fireEvent.click(closeButton);
+    expect(onCloseMock).toHaveBeenCalled();
   });
 });

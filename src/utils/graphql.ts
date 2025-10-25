@@ -1,4 +1,3 @@
-import assert from "assert";
 import {
   gql,
   ApolloClient,
@@ -6,11 +5,10 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 
-const endpoint = process.env.REACT_APP_GRAPHQL_ENDPOINT;
-assert.ok(
-  endpoint,
-  "REACT_APP_GRAPHQL_ENDPOINT environment variable must be set"
-);
+const endpoint = import.meta.env.VITE_GRAPHQL_ENDPOINT;
+if (!endpoint) {
+  throw new Error("VITE_GRAPHQL_ENDPOINT environment variable must be set");
+}
 
 const httpLink = createHttpLink({
   uri: endpoint,

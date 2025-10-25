@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
-          node-version: "16.x"
+          node-version: "18.x"
       - name: git config
         run: |
           git config user.name github-pages-deploy-action
@@ -21,6 +21,6 @@ jobs:
       - run: yarn install
       - run: yarn build
         env:
-          REACT_APP_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
-          REACT_APP_SENTRY_DSN: https://46cd951350084768a0306d2c223f7805@o87984.ingest.sentry.io/5575586
+          VITE_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
+          VITE_SENTRY_DSN: https://46cd951350084768a0306d2c223f7805@o87984.ingest.sentry.io/5575586
       - run: yarn deploy
