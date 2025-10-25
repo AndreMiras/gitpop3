@@ -4,16 +4,26 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-    - run: yarn install
-    - run: yarn test
-      env:
-        REACT_APP_GITHUB_PAT: ${{ secrets.REACT_APP_GITHUB_PAT }}
-    - run: yarn lint
-    - uses: coverallsapp/github-action@v1.1.2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "20.x"
+      - run: yarn install
+      - run: yarn tsc
+      - run: yarn build
+      - run: yarn test
+        env:
+          VITE_GRAPHQL_ENDPOINT: https://us-east1-gitpop3.cloudfunctions.net/gitpop3-graphql
+      - run: yarn lint
+
+      - name: Test serverless function
+        run: |
+          cd serverless
+          yarn install
+          yarn test
+
+      - uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

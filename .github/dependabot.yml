@@ -1,0 +1,50 @@
+version: 2
+updates:
+  # Root npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "andremiras"
+    labels:
+      - "dependencies"
+      - "npm"
+
+  # Serverless npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/serverless"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "andremiras"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "serverless"
+
+  # Terraform providers
+  - package-ecosystem: "terraform"
+    directory: "/terraform"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "andremiras"
+    labels:
+      - "dependencies"
+      - "terraform"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "andremiras"
+    labels:
+      - "dependencies"
+      - "github-actions"

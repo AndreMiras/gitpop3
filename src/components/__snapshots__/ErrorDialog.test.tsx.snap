@@ -1,0 +1,125 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorDialog > onClose omitted 1`] = `
+[
+  <div
+    className="modal-backdrop show"
+    onClick={[Function]}
+  />,
+  <div
+    aria-modal={true}
+    className="modal"
+    onClick={[Function]}
+    onMouseUp={[Function]}
+    role="dialog"
+    style={
+      {
+        "display": "block",
+      }
+    }
+    tabIndex={-1}
+  >
+    <div
+      className="modal-dialog"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="modal-content"
+      >
+        <div
+          className="bg-warning modal-header"
+        >
+          <div
+            className="modal-title h4"
+          >
+            Error
+          </div>
+          <button
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+            <span
+              className="sr-only"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body"
+        >
+          Error details onClose omitted
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`ErrorDialog > renders 1`] = `
+[
+  <div
+    className="modal-backdrop show"
+    onClick={[Function]}
+  />,
+  <div
+    aria-modal={true}
+    className="modal"
+    onClick={[Function]}
+    onMouseUp={[Function]}
+    role="dialog"
+    style={
+      {
+        "display": "block",
+      }
+    }
+    tabIndex={-1}
+  >
+    <div
+      className="modal-dialog"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="modal-content"
+      >
+        <div
+          className="bg-warning modal-header"
+        >
+          <div
+            className="modal-title h4"
+          >
+            Error
+          </div>
+          <button
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+            <span
+              className="sr-only"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body"
+        >
+          Error details renders
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

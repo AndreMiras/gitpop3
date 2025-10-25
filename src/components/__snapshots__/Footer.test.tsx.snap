@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders 1`] = `
+<footer
+  className="footer d-none d-md-block"
+>
+  <div
+    className="text-center container"
+  >
+    <span>
+      Copyright © Andre Miras 2020 - gitpop3 v
+      2020.12.19
+    </span>
+  </div>
+</footer>
+`;

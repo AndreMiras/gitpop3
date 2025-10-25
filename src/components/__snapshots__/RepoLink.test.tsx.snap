@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders 1`] = `
+<a
+  href="https://github.com/django/Django"
+>
+  django/Django
+</a>
+`;
