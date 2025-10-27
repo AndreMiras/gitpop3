@@ -25,7 +25,7 @@
     "graphql": "^16.11.0",
     "lodash": "^4.17.21",
     "react": "^17",
-    "react-bootstrap": "^1.6.8",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^17",
     "react-js-pagination": "^3.0.3",
     "react-router-dom": "^6.28.0",
