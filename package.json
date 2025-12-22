@@ -17,7 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.2.6",
     "@sentry/react": "^5.29.2",
-    "@sentry/tracing": "^5.29.2",
+    "@sentry/tracing": "^7.120.4",
     "@testing-library/jest-dom": "^6.9.1",
     "assert": "^2.1.0",
     "bootstrap": "^4.5.3",
