@@ -164,10 +164,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz#acad351d582d157bb145535db2a6ff53dd514b5c"
   integrity sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==
 
-"@google-cloud/functions-framework@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@google-cloud/functions-framework/-/functions-framework-4.0.1.tgz#f015c4930538e0b24d6d860b5b95f4fc8f7eb000"
-  integrity sha512-/ui6HI2yNVPNQXGCR+3FMMUEXqm1vMt+xh7oS+rqpVeDjjAYmFYyER1SDYlwvhau/hE53vSUyaDbicb/ilFzJA==
+"@google-cloud/functions-framework@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/functions-framework/-/functions-framework-5.0.0.tgz#b3f86e319ec136325ef33da40357d700c64e09cd"
+  integrity sha512-A5NXQUIbylXLDhLNAxtrbD5E0ds+L3rdCONKGHQiu2BmUb/8C2QN7W+d1ZgZEJFwbUQg/bpIBNKqx2SUWhJfjQ==
   dependencies:
     "@types/express" "^5.0.0"
     body-parser "2.2.0"
